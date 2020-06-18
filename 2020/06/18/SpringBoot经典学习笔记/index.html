@@ -5,15 +5,48 @@
   
 
   
-  <title>Hexo</title>
+  <title>SpringBoot经典学习笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="跟武哥一起学习Spring Boot作者信息本课程首发于 CSDN GitChat 达人课《跟武哥一起学Spring Boot》，该文档为课程详细笔记。作者：倪升武（武哥）微信公众号：武哥聊编程  版权申明：本课程已经免费，但版权属于 CSDN 和作者，未经允许，不得将该笔记用于商业用途和其他不正当用途，否则追究法律责任。  导读：课程概览1. Spring Boot是什么我们知道，从 2002">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot经典学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/06/18/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="跟武哥一起学习Spring Boot作者信息本课程首发于 CSDN GitChat 达人课《跟武哥一起学Spring Boot》，该文档为课程详细笔记。作者：倪升武（武哥）微信公众号：武哥聊编程  版权申明：本课程已经免费，但版权属于 CSDN 和作者，未经允许，不得将该笔记用于商业用途和其他不正当用途，否则追究法律责任。  导读：课程概览1. Spring Boot是什么我们知道，从 2002">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202002150421550.jpg">
+<meta property="og:image" content="https://images.gitbook.cn/98fda7f0-8656-11e8-8675-5537a701ae7d">
+<meta property="og:image" content="https://images.gitbook.cn/e17b8c40-8656-11e8-8a91-d70bc2d847c5">
+<meta property="og:image" content="https://images.gitbook.cn/00078650-8657-11e8-87de-d910a3ee087e">
+<meta property="og:image" content="https://images.gitbook.cn/9befde80-8659-11e8-9b0d-95de449dc107">
+<meta property="og:image" content="https://images.gitbook.cn/014a1ba0-865b-11e8-956e-f528114b28bd">
+<meta property="og:image" content="https://images.gitbook.cn/2ff7b930-865b-11e8-8675-5537a701ae7d">
+<meta property="og:image" content="https://images.gitbook.cn/57564e60-865b-11e8-8a91-d70bc2d847c5">
+<meta property="og:image" content="https://images.gitbook.cn/8b32fa80-865b-11e8-9d13-03ea4b4d8504">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215043749282.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215043853532.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215043936444.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215044013383.png">
+<meta property="og:image" content="http://p99jlm9k5.bkt.clouddn.com/blog/images/1/error.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215044156305.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215044226292.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215044256579.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200215044353803.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020021504443480.png">
+<meta property="og:image" content="https://images.gitbook.cn/4258b9c0-9f93-11e8-a34f-d93da92347ea">
+<meta property="og:image" content="https://images.gitbook.cn/cfb9c460-aa94-11e8-888f-df33be8ed191">
+<meta property="og:image" content="https://images.gitbook.cn/2dd0f5f0-af4a-11e8-a51c-93c39f2785b1">
+<meta property="og:image" content="https://images.gitbook.cn/f21c53a0-af4f-11e8-a51c-93c39f2785b1">
+<meta property="og:image" content="https://images.gitbook.cn/44a68bc0-af75-11e8-85ef-dd986da3511e">
+<meta property="og:image" content="https://images.gitbook.cn/83b3f810-b377-11e8-88bf-23cb78d1fb4f">
+<meta property="og:image" content="https://images.gitbook.cn/8ef8a4a0-b377-11e8-911d-27cc5f059829">
+<meta property="og:image" content="https://images.gitbook.cn/6f23c980-b89e-11e8-87f1-559c9b456754">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202002150421550.jpg">
+<meta property="article:published_time" content="2020-06-18T08:26:18.142Z">
+<meta property="article:modified_time" content="2020-02-17T01:41:41.717Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/202002150421550.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -62,9 +95,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-SpringBoot经典学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SpringBoot经典学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/06/18/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
   <time datetime="2020-06-18T08:26:18.142Z" itemprop="datePublished">2020-06-18</time>
@@ -77,8 +108,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot经典学习笔记</a>
+    <h1 class="article-title" itemprop="name">
+      SpringBoot经典学习笔记
     </h1>
   
 
@@ -1180,60 +1211,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/18/hello-world/" class="article-date">
-  <time datetime="2020-06-18T08:00:00.190Z" itemprop="datePublished">2020-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2020/06/18/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/18/hello-world/" data-id="ckbki8qsu000014uo3olu9164" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
