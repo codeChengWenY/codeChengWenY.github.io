@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Java 4种引用关系 | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java 4种引用关系 1 强引用 概念 被强引用关联的对象不会被回收。 使用 new 一个新对象的方式创建强引用。  1Object obj &#x3D; new Object();  2 弱引用 被弱引用关联的对象一定会被回收，也就是说它只能存活到下一次垃圾回收发生之前。 使用 WeakReference 类来创建弱引用。 123Object obj&#x3D;new Object();WeakReference">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 4种引用关系">
+<meta property="og:url" content="http://codercheng.cn/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="Java 4种引用关系 1 强引用 概念 被强引用关联的对象不会被回收。 使用 new 一个新对象的方式创建强引用。  1Object obj &#x3D; new Object();  2 弱引用 被弱引用关联的对象一定会被回收，也就是说它只能存活到下一次垃圾回收发生之前。 使用 WeakReference 类来创建弱引用。 123Object obj&#x3D;new Object();WeakReference">
+<meta property="og:locale" content="zn">
+<meta property="article:published_time" content="2020-08-05T10:13:05.193Z">
+<meta property="article:modified_time" content="2020-08-05T10:12:17.330Z">
+<meta property="article:author" content="CoderCheng">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://codercheng.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java 4种引用关系" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" class="article-date">
+  <time datetime="2020-08-05T10:13:05.193Z" itemprop="datePublished">2020-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 4种引用关系
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java 4种引用关系</p>
+<p>1 强引用</p>
+<p>概念 被强引用关联的对象不会被回收。</p>
+<p>使用 new 一个新对象的方式创建强引用。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
+
+<p>2 弱引用</p>
+<p>被弱引用关联的对象一定会被回收，也就是说它只能存活到下一次垃圾回收发生之前。</p>
+<p>使用 WeakReference 类来创建弱引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">WeakReference&lt;Object&gt; wf=<span class="keyword">new</span> WeakReference&lt;Object&gt;(obj);</span><br><span class="line">obj=<span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3 虚引用</p>
+<p>又称为 幽灵引用 或者幻影引用，一个对象是否有虚引用的存在，不会对其生存时间造成影响，也无法通过虚引用得到一个对象。</p>
+<p>为一个对象设置虚引用的唯一目的是能在这个对象被回收时收到一个系统的通知。</p>
+<p>使用PhantomReference 来创建虚引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">PhantomReference&lt;Object&gt; pf=<span class="keyword">new</span> PhantomReference&lt;object&gt;(obj,<span class="keyword">null</span>);</span><br><span class="line">obj=<span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>4 软引用</p>
+<p>被软引用关联的对象只有在内存不够的情况下才会被回收。</p>
+<p>使用SoftReference 类 来创建软引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">SoftReference&lt;Object&gt; sf=<span class="keyword">new</span> SoftReference&lt;Object&gt;(obj);</span><br><span class="line">obj=<span class="keyword">null</span> <span class="comment">// 使对象只能被软引用关联。</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" data-id="ckdh7rkol0000qsuohjl67tbo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/19/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自动化博客上传</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/">Java 4种引用关系</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/19/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/19/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/18/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/18/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/">177230_23种设计模式详解笔记Part1</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 CoderCheng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
