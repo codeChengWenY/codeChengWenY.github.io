@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Mybatis" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-自动化博客上传" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/08/23/Mybatis/" class="article-date">
-  <time datetime="2020-08-23T06:31:07.973Z" itemprop="datePublished">2020-08-23</time>
+    <a href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.469Z" itemprop="datePublished">2020-08-24</time>
 </a>
     
   </div>
@@ -78,7 +78,288 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/23/Mybatis/">Mybatis</a>
+      <a class="article-title" href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自动化测试</p>
+<p> <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2627047110,1799495614&fm=26&gp=0.jpg" alt="img"> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/" data-id="cke8fv1d2000840uoftx34h3m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-numpy矩阵入门操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.468Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="numpy矩阵"><a href="#numpy矩阵" class="headerlink" title="numpy矩阵"></a>numpy矩阵</h2><p>矩阵是numpy.matrix类型的对象，该类继承自numpy.ndarray，任何针对多维数组的操作，对矩阵同样有效，但是作为子类矩阵又结合其自身的特点，做了必要的扩充，比如：乘法计算、求逆等。</p>
+<h3 id="1-矩阵对象的创建"><a href="#1-矩阵对象的创建" class="headerlink" title="1. 矩阵对象的创建"></a>1. 矩阵对象的创建</h3><ol>
+<li>通过ndarray创建matrix对象</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.matrix(</span><br><span class="line">    ary,		<span class="comment"># 任何可被解释为矩阵的二维容器</span></span><br><span class="line">  	copy=<span class="literal">True</span>	<span class="comment"># 是否复制数据(缺省值为True，即复制数据)</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>numpy.mat()</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等价于：numpy.matrix(..., copy=False)</span></span><br><span class="line"><span class="comment"># 由该函数创建的矩阵对象与参数中的源容器一定共享数据，无法拥有独立的数据拷贝</span></span><br><span class="line">numpy.mat(任何可被解释为矩阵的二维容器)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该函数可以接受字符串形式的矩阵描述：</span></span><br><span class="line"><span class="comment"># 数据项通过空格分隔，数据行通过分号分隔。例如：'1 2 3; 4 5 6'</span></span><br><span class="line">numpy.mat(拼块规则)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>示例</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建matrix操作</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.arange(<span class="number">1</span>, <span class="number">10</span>).reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">print(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一种方式</span></span><br><span class="line">m = np.matrix(arr, copy=<span class="literal">True</span>)</span><br><span class="line">print(m, m.shape, type(m))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种方式:共享方式</span></span><br><span class="line">m2 = np.mat(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三种方式</span></span><br><span class="line">m3 = np.mat(<span class="string">"1 2 3;4 5 6.0"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-矩阵的乘法运算"><a href="#2-矩阵的乘法运算" class="headerlink" title="2. 矩阵的乘法运算"></a>2. 矩阵的乘法运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 矩阵乘法</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">                [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"><span class="comment"># 数组相乘, 各对应位置元素相乘</span></span><br><span class="line">print(arr * arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 矩阵相乘，第n行乘m列之和，作为结果的n,m个元素</span></span><br><span class="line"><span class="comment"># 矩阵相乘，第一个矩阵行数必须等于第二个矩阵列数</span></span><br><span class="line">m = np.mat(arr)</span><br><span class="line">print(m * m)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-矩阵的逆矩阵"><a href="#3-矩阵的逆矩阵" class="headerlink" title="3. 矩阵的逆矩阵"></a>3. 矩阵的逆矩阵</h3><p>若两个矩阵A、B满足：AB = E （E为单位矩阵），则称B为A的逆矩阵。</p>
+<p><strong>单位矩阵</strong></p>
+<ul>
+<li>在矩阵的乘法中，有一种矩阵起着特殊的作用，如同数的乘法中的1，这种矩阵被称为单位矩阵。</li>
+<li>它是个方阵，从左上角到右下角的对角线（称为主对角线）上的元素均为1，除此以外全都为0，记为$I_n$或$E_n$ ，通常用I或E来表示。</li>
+<li>根据单位矩阵的特点，任何矩阵与单位矩阵相乘都等于本身，而且单位矩阵因此独特性有广泛用途。<br>$$<br>E_3 =<br>\left[ \begin{array}{ccc}<br>1 &amp; 0 &amp; 0\<br>0 &amp; 1 &amp; 0\<br>0 &amp; 0 &amp; 1\<br>\end{array}<br>\right ]<br>$$</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" data-id="cke8fv1cx000440uo0ujhhkyj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-缓存穿透" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.468Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>缓存穿透</strong></p>
+<p>概念：是指查询数据库中一定不存在的数据。</p>
+<p>栗子：一个数据库中不存在的数据 每次查询为空，每次不进行缓存。</p>
+<p>解决：1 采用缓存空值的方式  设定缓存过期时间较短 比如设置60s</p>
+<p>​          2  采用布隆过滤器  （Google  ,Redis  都可以实现）</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" data-id="cke8fv1d1000740uofj4u7yhb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/hello-world/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.467Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/hello-world/" data-id="cke8fv1cz000540uobmfndn00" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git 忽略文件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.466Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/">git 忽略文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>.gitignore忽略已提交的文件</strong></p>
+<p>描述 ：需要忽略的文件已经提交</p>
+<p>解决方案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git  rm -r --cache .</span><br><span class="line">git  add .</span><br><span class="line">git  commit -m &quot;.gitignore now work&quot;</span><br></pre></td></tr></table></figure>
+
+<p>执行后 会发现.gitignore 文件起作用了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/" data-id="cke8fv1d0000640uo9mg638t0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SpringBoot经典学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.465Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot经典学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="跟武哥一起学习Spring-Boot"><a href="#跟武哥一起学习Spring-Boot" class="headerlink" title="跟武哥一起学习Spring Boot"></a>跟武哥一起学习Spring Boot</h1><h1 id="作者信息"><a href="#作者信息" class="headerlink" title="作者信息"></a>作者信息</h1><p>本课程首发于 CSDN GitChat 达人课《跟武哥一起学Spring Boot》，该文档为课程详细笔记。<br>作者：倪升武（武哥）<br>微信公众号：武哥聊编程<br><img src="https://img-blog.csdnimg.cn/202002150421550.jpg" alt="武哥聊编程"></p>
+<blockquote>
+<p>版权申明：本课程已经免费，但版权属于 CSDN 和作者，未经允许，不得将该笔记用于商业用途和其他不正当用途，否则追究法律责任。</p>
+</blockquote>
+        
+          <p class="article-more-link">
+            <a href="/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cke8fv1dw000b40uo6ro298kj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Mybatis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/Mybatis/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.463Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/Mybatis/">Mybatis</a>
     </h1>
   
 
@@ -106,49 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/23/Mybatis/" data-id="cke6pt1yd0000pouocu0b2ska" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-git 忽略文件" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/14/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/" class="article-date">
-  <time datetime="2020-08-14T06:46:29.782Z" itemprop="datePublished">2020-08-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/14/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/">git 忽略文件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>.gitignore忽略已提交的文件</strong></p>
-<p>描述 ：需要忽略的文件已经提交</p>
-<p>解决方案</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git  rm -r --cache .</span><br><span class="line">git  add .</span><br><span class="line">git  commit -m &quot;.gitignore now work&quot;</span><br></pre></td></tr></table></figure>
-
-<p>执行后 会发现.gitignore 文件起作用了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/14/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/" data-id="ckdtvcjyr0000nwuofcxc0aml" class="article-share-link">Share</a>
+      <a data-url="http://codercheng.cn/2020/08/24/Mybatis/" data-id="cke8fv1cu000240uohcnqc5uo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -160,8 +399,8 @@
   
     <article id="post-Java 4种引用关系" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" class="article-date">
-  <time datetime="2020-08-05T10:13:05.193Z" itemprop="datePublished">2020-08-05</time>
+    <a href="/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.462Z" itemprop="datePublished">2020-08-24</time>
 </a>
     
   <div class="article-category">
@@ -176,7 +415,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/">Java 4种引用关系</a>
+      <a class="article-title" href="/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/">Java 4种引用关系</a>
     </h1>
   
 
@@ -216,153 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" data-id="ckdh7rkol0000qsuohjl67tbo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-自动化博客上传" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/19/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/" class="article-date">
-  <time datetime="2020-06-19T10:31:57.600Z" itemprop="datePublished">2020-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/19/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自动化测试</p>
-<p> <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2627047110,1799495614&fm=26&gp=0.jpg" alt="img"> </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/06/19/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/" data-id="ckbm2rd4k0000bguocog5ciny" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-numpy矩阵入门操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/19/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" class="article-date">
-  <time datetime="2020-06-19T01:39:39.316Z" itemprop="datePublished">2020-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/19/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="numpy矩阵"><a href="#numpy矩阵" class="headerlink" title="numpy矩阵"></a>numpy矩阵</h2><p>矩阵是numpy.matrix类型的对象，该类继承自numpy.ndarray，任何针对多维数组的操作，对矩阵同样有效，但是作为子类矩阵又结合其自身的特点，做了必要的扩充，比如：乘法计算、求逆等。</p>
-<h3 id="1-矩阵对象的创建"><a href="#1-矩阵对象的创建" class="headerlink" title="1. 矩阵对象的创建"></a>1. 矩阵对象的创建</h3><ol>
-<li>通过ndarray创建matrix对象</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.matrix(</span><br><span class="line">    ary,		<span class="comment"># 任何可被解释为矩阵的二维容器</span></span><br><span class="line">  	copy=<span class="literal">True</span>	<span class="comment"># 是否复制数据(缺省值为True，即复制数据)</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><code>numpy.mat()</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等价于：numpy.matrix(..., copy=False)</span></span><br><span class="line"><span class="comment"># 由该函数创建的矩阵对象与参数中的源容器一定共享数据，无法拥有独立的数据拷贝</span></span><br><span class="line">numpy.mat(任何可被解释为矩阵的二维容器)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该函数可以接受字符串形式的矩阵描述：</span></span><br><span class="line"><span class="comment"># 数据项通过空格分隔，数据行通过分号分隔。例如：'1 2 3; 4 5 6'</span></span><br><span class="line">numpy.mat(拼块规则)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p><strong>示例</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建matrix操作</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.arange(<span class="number">1</span>, <span class="number">10</span>).reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">print(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一种方式</span></span><br><span class="line">m = np.matrix(arr, copy=<span class="literal">True</span>)</span><br><span class="line">print(m, m.shape, type(m))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种方式:共享方式</span></span><br><span class="line">m2 = np.mat(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三种方式</span></span><br><span class="line">m3 = np.mat(<span class="string">"1 2 3;4 5 6.0"</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-矩阵的乘法运算"><a href="#2-矩阵的乘法运算" class="headerlink" title="2. 矩阵的乘法运算"></a>2. 矩阵的乘法运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 矩阵乘法</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">                [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"><span class="comment"># 数组相乘, 各对应位置元素相乘</span></span><br><span class="line">print(arr * arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 矩阵相乘，第n行乘m列之和，作为结果的n,m个元素</span></span><br><span class="line"><span class="comment"># 矩阵相乘，第一个矩阵行数必须等于第二个矩阵列数</span></span><br><span class="line">m = np.mat(arr)</span><br><span class="line">print(m * m)</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-矩阵的逆矩阵"><a href="#3-矩阵的逆矩阵" class="headerlink" title="3. 矩阵的逆矩阵"></a>3. 矩阵的逆矩阵</h3><p>若两个矩阵A、B满足：AB = E （E为单位矩阵），则称B为A的逆矩阵。</p>
-<p><strong>单位矩阵</strong></p>
-<ul>
-<li>在矩阵的乘法中，有一种矩阵起着特殊的作用，如同数的乘法中的1，这种矩阵被称为单位矩阵。</li>
-<li>它是个方阵，从左上角到右下角的对角线（称为主对角线）上的元素均为1，除此以外全都为0，记为$I_n$或$E_n$ ，通常用I或E来表示。</li>
-<li>根据单位矩阵的特点，任何矩阵与单位矩阵相乘都等于本身，而且单位矩阵因此独特性有广泛用途。<br>$$<br>E_3 =<br>\left[ \begin{array}{ccc}<br>1 &amp; 0 &amp; 0\<br>0 &amp; 1 &amp; 0\<br>0 &amp; 0 &amp; 1\<br>\end{array}<br>\right ]<br>$$</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2020/06/19/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/06/19/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" data-id="ckblo706x00034kuo9rhj5iq8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-缓存穿透" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/18/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" class="article-date">
-  <time datetime="2020-06-18T10:45:07.185Z" itemprop="datePublished">2020-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>缓存穿透</strong></p>
-<p>概念：是指查询数据库中一定不存在的数据。</p>
-<p>栗子：一个数据库中不存在的数据 每次查询为空，每次不进行缓存。</p>
-<p>解决：1 采用缓存空值的方式  设定缓存过期时间较短 比如设置60s</p>
-<p>​          2  采用布隆过滤器  （Google  ,Redis  都可以实现）</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/06/18/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/06/18/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" data-id="ckblo706w00024kuoho2vav1y" class="article-share-link">Share</a>
+      <a data-url="http://codercheng.cn/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" data-id="cke8fv1cn000040uoex70eqd2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,8 +467,8 @@
   
     <article id="post-177230_23种设计模式详解笔记Part1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/06/18/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/" class="article-date">
-  <time datetime="2020-06-18T09:06:10.802Z" itemprop="datePublished">2020-06-18</time>
+    <a href="/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.462Z" itemprop="datePublished">2020-08-24</time>
 </a>
     
   </div>
@@ -386,7 +479,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/">177230_23种设计模式详解笔记Part1</a>
+      <a class="article-title" href="/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/">177230_23种设计模式详解笔记Part1</a>
     </h1>
   
 
@@ -418,106 +511,13 @@
 <p><img src="C:%5CUsers%5Clenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554254661859.png" alt="1554254661859"></p>
         
           <p class="article-more-link">
-            <a href="/2020/06/18/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/#more">Read More</a>
+            <a href="/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/06/18/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/" data-id="ckblo707f00044kuodalr5d02" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SpringBoot经典学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/18/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-06-18T08:26:18.142Z" itemprop="datePublished">2020-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot经典学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="跟武哥一起学习Spring-Boot"><a href="#跟武哥一起学习Spring-Boot" class="headerlink" title="跟武哥一起学习Spring Boot"></a>跟武哥一起学习Spring Boot</h1><h1 id="作者信息"><a href="#作者信息" class="headerlink" title="作者信息"></a>作者信息</h1><p>本课程首发于 CSDN GitChat 达人课《跟武哥一起学Spring Boot》，该文档为课程详细笔记。<br>作者：倪升武（武哥）<br>微信公众号：武哥聊编程<br><img src="https://img-blog.csdnimg.cn/202002150421550.jpg" alt="武哥聊编程"></p>
-<blockquote>
-<p>版权申明：本课程已经免费，但版权属于 CSDN 和作者，未经允许，不得将该笔记用于商业用途和其他不正当用途，否则追究法律责任。</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2020/06/18/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/06/18/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckblo707p00054kuocwl2537a" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/18/hello-world/" class="article-date">
-  <time datetime="2020-06-18T08:00:00.190Z" itemprop="datePublished">2020-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/06/18/hello-world/" data-id="ckblo706n00004kuo67urhnah" class="article-share-link">Share</a>
+      <a data-url="http://codercheng.cn/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/" data-id="cke8fv1dl000a40uofzm25sjj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -552,7 +552,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
     </div>
   </div>
 
@@ -565,23 +565,23 @@
       <ul>
         
           <li>
-            <a href="/2020/08/23/Mybatis/">Mybatis</a>
+            <a href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
           </li>
         
           <li>
-            <a href="/2020/08/14/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/">git 忽略文件</a>
+            <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
           </li>
         
           <li>
-            <a href="/2020/08/05/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/">Java 4种引用关系</a>
+            <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
           </li>
         
           <li>
-            <a href="/2020/06/19/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
+            <a href="/2020/08/24/hello-world/">Hello World</a>
           </li>
         
           <li>
-            <a href="/2020/06/19/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
+            <a href="/2020/08/24/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/">git 忽略文件</a>
           </li>
         
       </ul>
