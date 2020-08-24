@@ -15,7 +15,7 @@
 <meta property="og:description" content="numpy矩阵矩阵是numpy.matrix类型的对象，该类继承自numpy.ndarray，任何针对多维数组的操作，对矩阵同样有效，但是作为子类矩阵又结合其自身的特点，做了必要的扩充，比如：乘法计算、求逆等。 1. 矩阵对象的创建 通过ndarray创建matrix对象  1234numpy.matrix(    ary,		# 任何可被解释为矩阵的二维容器  	copy&#x3D;True	# 是否复制">
 <meta property="og:locale" content="zn">
 <meta property="article:published_time" content="2020-06-19T01:39:39.316Z">
-<meta property="article:modified_time" content="2020-06-19T01:39:14.856Z">
+<meta property="article:modified_time" content="2020-08-24T10:46:20.861Z">
 <meta property="article:author" content="CoderCheng">
 <meta name="twitter:card" content="summary">
   
@@ -111,6 +111,8 @@
 <li>它是个方阵，从左上角到右下角的对角线（称为主对角线）上的元素均为1，除此以外全都为0，记为$I_n$或$E_n$ ，通常用I或E来表示。</li>
 <li>根据单位矩阵的特点，任何矩阵与单位矩阵相乘都等于本身，而且单位矩阵因此独特性有广泛用途。<br>$$<br>E_3 =<br>\left[ \begin{array}{ccc}<br>1 &amp; 0 &amp; 0\<br>0 &amp; 1 &amp; 0\<br>0 &amp; 0 &amp; 1\<br>\end{array}<br>\right ]<br>$$</li>
 </ul>
+<a id="more"></a>
+
 <p><strong>逆矩阵示例：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">e = np.mat(<span class="string">"1 2 6; 3 5 7; 4 8 9"</span>)</span><br><span class="line">print(e.I)</span><br><span class="line">print(e * e.I)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非方阵的逆（称为广义逆矩阵）</span></span><br><span class="line">e = np.mat(<span class="string">"1 2 6; 3 5 7"</span>)</span><br><span class="line">print(e.I)</span><br><span class="line">print(e * e.I)</span><br></pre></td></tr></table></figure>
 
@@ -172,7 +174,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li></ul>
     </div>
   </div>
 
