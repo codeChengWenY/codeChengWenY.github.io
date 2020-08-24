@@ -15,7 +15,7 @@
 <meta property="og:description" content="MyBatis框架学习笔记 是一款优秀的ORM（Object&#x2F;Relation Mapping）对象关系映射 半自动轻量级持久层框架。 大量使用设计模式 ​    1  Builder模式   SqlSessionFactoryBuilder  含义 ：使用多个简单的对象构建成一个复杂的对象。 12InputStream resourceAsStream &#x3D; Resources.getResour">
 <meta property="og:locale" content="zn">
 <meta property="article:published_time" content="2020-08-23T06:31:07.973Z">
-<meta property="article:modified_time" content="2020-08-23T05:12:09.781Z">
+<meta property="article:modified_time" content="2020-08-24T02:54:48.682Z">
 <meta property="article:author" content="CoderCheng">
 <meta name="twitter:card" content="summary">
   
@@ -103,15 +103,7 @@
 <p>动态代理模式  </p>
 <p>  一般采用接口的形式定义Mapper  其底层使用的就是Jdk的动态代理技术</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">IUserDao mapper = sqlSession.getMapper(IUserDao<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 会调用 MapperProxy 类中的方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 如果是 Object 定义的方法，直接调用</span></span><br><span class="line">            <span class="keyword">if</span> (Object<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">method</span>.<span class="title">getDeclaringClass</span>())) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> method.invoke(<span class="keyword">this</span>, args);</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isDefaultMethod(method)) &#123;</span><br><span class="line">                <span class="keyword">return</span> invokeDefaultMethod(proxy, method, args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="keyword">throw</span> ExceptionUtil.unwrapThrowable(t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 获得 MapperMethod 对象</span></span><br><span class="line">        <span class="keyword">final</span> MapperMethod mapperMethod = cachedMapperMethod(method);</span><br><span class="line">        <span class="comment">// 重点在这：MapperMethod最终调用了执行的方法</span></span><br><span class="line">        <span class="keyword">return</span> mapperMethod.execute(sqlSession, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
+<p>总体流程<br>   1加载配置文件并初始化<br>     将文件 加载成字节输入流,并将xml文件内容解析到Configuration类中的属性中<br>2处理操作请求<br>   SqlSession接口的默认实现DefaultSqlSession 中的Executor 执行器,解析参数，然后执行底层的JDBC操作。<br>3 返回处理结果<br>   执行器 具体执行后 将数据库的查询 结果通过反射对应的具体的类中。</p>
 
       
     </div>
