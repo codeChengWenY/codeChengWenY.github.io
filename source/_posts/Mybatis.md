@@ -54,6 +54,13 @@ IUserDao mapper = sqlSession.getMapper(IUserDao.class);
         return mapperMethod.execute(sqlSession, args);
     }
 ```
+总体流程 
+   1加载配置文件并初始化
+     将文件 加载成字节输入流,并将xml文件内容解析到Configuration类中的属性中
+2处理操作请求
+   SqlSession接口的默认实现DefaultSqlSession 中的Executor 执行器,解析参数，然后执行底层的JDBC操作。
+3 返回处理结果
+   执行器 具体执行后 将数据库的查询 结果通过反射对应的具体的类中。
 
 
 
