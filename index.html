@@ -64,6 +64,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SpringMVC流程图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="article-date">
+  <time datetime="2020-09-15T03:21:54.741Z" itemprop="datePublished">2020-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/">SpringMVC流程图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringMvc流程图</p>
+<p>流程说明 </p>
+<p>第⼀步：⽤户发送请求⾄前端控制器DispatcherServlet </p>
+<p>第⼆步：DispatcherServlet收到请求调⽤HandlerMapping处理器映射器 </p>
+<p>第三步：处理器映射器根据请求Url找到具体的Handler（后端控制器），⽣成处理器对象及处理器拦截 </p>
+<p>器(如果 有则⽣成)⼀并返回DispatcherServlet </p>
+<p>第四步：DispatcherServlet调⽤HandlerAdapter处理器适配器去调⽤Handler </p>
+<p>第五步：处理器适配器执⾏Handler </p>
+<p>第六步：Handler执⾏完成给处理器适配器返回ModelAndView </p>
+<p>第七步：处理器适配器向前端控制器返回 ModelAndView，ModelAndView 是SpringMVC 框架的⼀个 </p>
+<p>底层对 象，包括 Model 和 View </p>
+<p>第⼋步：前端控制器请求视图解析器去进⾏视图解析，根据逻辑视图名来解析真正的视图。 </p>
+<p>第九步：视图解析器向前端控制器返回View </p>
+<p>第⼗步：前端控制器进⾏视图渲染，就是将模型数据（在 ModelAndView 对象中）填充到 request 域 </p>
+<p>第⼗⼀步：前端控制器向⽤户响应结果</p>
+<p><img src="https://img-blog.csdn.net/20180918085109774?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzY1NjEyNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/" data-id="ckf3e7a4u0000z0uocvpsfuzq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-自动化博客上传" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/" class="article-date">
@@ -552,7 +604,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
     </div>
   </div>
 
@@ -563,6 +615,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/">SpringMVC流程图</a>
+          </li>
         
           <li>
             <a href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
@@ -578,10 +634,6 @@
         
           <li>
             <a href="/2020/08/24/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/24/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6/">git 忽略文件</a>
           </li>
         
       </ul>
