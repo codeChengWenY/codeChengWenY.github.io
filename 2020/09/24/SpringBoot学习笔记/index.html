@@ -5,13 +5,17 @@
   
 
   
-  <title>Category: Java | 个人博客</title>
+  <title>SpringBoot学习笔记 | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="个人博客">
-<meta property="og:url" content="http://codercheng.cn/categories/Java/index.html">
+  <meta name="description" content="SpringBoot学习笔记 1 约定大于配置 2 实现自动配置   springbok应用启动 @ Spring Bootapplication起作用 @Enableauto Configuration @ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot学习笔记">
+<meta property="og:url" content="http://codercheng.cn/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="SpringBoot学习笔记 1 约定大于配置 2 实现自动配置   springbok应用启动 @ Spring Bootapplication起作用 @Enableauto Configuration @ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 R">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-24T03:34:58.653Z">
+<meta property="article:modified_time" content="2020-09-24T03:45:51.732Z">
 <meta property="article:author" content="CoderCheng">
 <meta name="twitter:card" content="summary">
   
@@ -62,40 +66,61 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" class="archive-article-date">
-  <time datetime="2020-08-24T11:29:00.462Z" itemprop="datePublished">8月 24</time>
+        <section id="main"><article id="post-SpringBoot学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-09-24T03:34:58.653Z" itemprop="datePublished">2020-09-24</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/">Java 4种引用关系</a>
+    <h1 class="article-title" itemprop="name">
+      SpringBoot学习笔记
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot学习笔记</p>
+<p>1 约定大于配置</p>
+<p>2 实现自动配置 </p>
+<ol>
+<li>springbok应用启动</li>
+<li>@ Spring Bootapplication起作用</li>
+<li>@Enableauto Configuration</li>
+<li>@ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 Registrar类导入到容器中，而registrar类作用是扫描主配置类同级目录以及子包，并将相应的组件导入到springboote创建管理的容器中</li>
+<li>@ import( AutoConfigurationlmportselector. class):它通过将<br>Autoconfigurationlmportselector类导入到容器中， Auto Configurationlmportselector类作用是<br>通过 electlmports，方法执行的过程中，会使用内部工具类 Springfactoriesloader，查找<br>classpath上所有jar包中的META-INF/ spring, factories进行加载，实现将配置类信息交给<br>Springfactory加载器进行一系列的容器创建过程  </li>
+</ol>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckfg9yqye0000lwuo8bru551n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">easypoi导出动态表头excel</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

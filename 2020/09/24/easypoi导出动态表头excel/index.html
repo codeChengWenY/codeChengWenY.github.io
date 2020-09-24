@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>easypoi导出动态表头excel | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="easypoi导出动态表头excel注：文章转载来自  https:&#x2F;&#x2F;blog.csdn.net&#x2F;ajax_yan&#x2F;article&#x2F;details&#x2F;82289240  123456&lt;dependency&gt;            &lt;groupId&gt;cn.afterturn&lt;&#x2F;groupId&gt;            &lt;artifactId&gt;easypo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="easypoi导出动态表头excel">
+<meta property="og:url" content="http://codercheng.cn/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="easypoi导出动态表头excel注：文章转载来自  https:&#x2F;&#x2F;blog.csdn.net&#x2F;ajax_yan&#x2F;article&#x2F;details&#x2F;82289240  123456&lt;dependency&gt;            &lt;groupId&gt;cn.afterturn&lt;&#x2F;groupId&gt;            &lt;artifactId&gt;easypo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/c4c193b1ly1gizmhbkrkcj20kr0nu3zc.jpg">
+<meta property="article:published_time" content="2020-09-24T03:34:58.633Z">
+<meta property="article:modified_time" content="2020-09-22T10:53:46.806Z">
+<meta property="article:author" content="CoderCheng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/c4c193b1ly1gizmhbkrkcj20kr0nu3zc.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://codercheng.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-easypoi导出动态表头excel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/" class="article-date">
+  <time datetime="2020-09-24T03:34:58.633Z" itemprop="datePublished">2020-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      easypoi导出动态表头excel
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="easypoi导出动态表头excel"><a href="#easypoi导出动态表头excel" class="headerlink" title="easypoi导出动态表头excel"></a>easypoi导出动态表头excel</h2><p>注：文章转载来自  <a href="https://blog.csdn.net/ajax_yan/article/details/82289240" target="_blank" rel="noopener">https://blog.csdn.net/ajax_yan/article/details/82289240</a> </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.afterturn<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easypoi-base<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynaCol</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        List&lt;ExcelExportEntity&gt; colList = <span class="keyword">new</span> ArrayList&lt;ExcelExportEntity&gt;();</span><br><span class="line">        ExcelExportEntity colEntity = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"商品名称"</span>, <span class="string">"title"</span>);</span><br><span class="line">        colEntity.setNeedMerge(<span class="keyword">true</span>);</span><br><span class="line">        colList.add(colEntity);</span><br><span class="line"></span><br><span class="line">        colEntity = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"供应商"</span>, <span class="string">"supplier"</span>);</span><br><span class="line">        colEntity.setNeedMerge(<span class="keyword">true</span>);</span><br><span class="line">        colList.add(colEntity);</span><br><span class="line"></span><br><span class="line">        ExcelExportEntity deliColGroup = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"得力"</span>, <span class="string">"deli"</span>);</span><br><span class="line">        List&lt;ExcelExportEntity&gt; deliColList = <span class="keyword">new</span> ArrayList&lt;ExcelExportEntity&gt;();</span><br><span class="line">        deliColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"市场价"</span>, <span class="string">"orgPrice"</span>));</span><br><span class="line">        deliColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"专区价"</span>, <span class="string">"salePrice"</span>));</span><br><span class="line">        deliColGroup.setList(deliColList);</span><br><span class="line">        colList.add(deliColGroup);</span><br><span class="line"></span><br><span class="line">        ExcelExportEntity jdColGroup = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"京东"</span>, <span class="string">"jd"</span>);</span><br><span class="line">        List&lt;ExcelExportEntity&gt; jdColList = <span class="keyword">new</span> ArrayList&lt;ExcelExportEntity&gt;();</span><br><span class="line">        jdColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"市场价"</span>, <span class="string">"orgPrice"</span>));</span><br><span class="line">        jdColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"专区价"</span>, <span class="string">"salePrice"</span>));</span><br><span class="line">        jdColGroup.setList(jdColList);</span><br><span class="line">        colList.add(jdColGroup);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        List&lt;Map&lt;String, Object&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, Object&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            Map&lt;String, Object&gt; valMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">            valMap.put(<span class="string">"title"</span>, <span class="string">"名称."</span> + i);</span><br><span class="line">            valMap.put(<span class="string">"supplier"</span>, <span class="string">"供应商."</span> + i);</span><br><span class="line"></span><br><span class="line">            List&lt;Map&lt;String, Object&gt;&gt; deliDetailList = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, Object&gt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">                Map&lt;String, Object&gt; deliValMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">                deliValMap.put(<span class="string">"orgPrice"</span>, <span class="string">"得力.市场价."</span> + j);</span><br><span class="line">                deliValMap.put(<span class="string">"salePrice"</span>, <span class="string">"得力.专区价."</span> + j);</span><br><span class="line">                deliDetailList.add(deliValMap);</span><br><span class="line">            &#125;</span><br><span class="line">            valMap.put(<span class="string">"deli"</span>, deliDetailList);</span><br><span class="line"></span><br><span class="line">            List&lt;Map&lt;String, Object&gt;&gt; jdDetailList = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, Object&gt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; j++) &#123;</span><br><span class="line">                Map&lt;String, Object&gt; jdValMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">                jdValMap.put(<span class="string">"orgPrice"</span>, <span class="string">"京东.市场价."</span> + j);</span><br><span class="line">                jdValMap.put(<span class="string">"salePrice"</span>, <span class="string">"京东.专区价."</span> + j);</span><br><span class="line">                jdDetailList.add(jdValMap);</span><br><span class="line">            &#125;</span><br><span class="line">            valMap.put(<span class="string">"jd"</span>, jdDetailList);</span><br><span class="line"></span><br><span class="line">            list.add(valMap);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Workbook workbook = ExcelExportUtil.exportExcel(<span class="keyword">new</span> ExportParams(<span class="string">"价格分析表"</span>, <span class="string">"数据"</span>), colList,</span><br><span class="line">                list);</span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"D:/价格分析表.tt.xls"</span>);</span><br><span class="line">        workbook.write(fos);</span><br><span class="line">        fos.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="http://ww1.sinaimg.cn/large/c4c193b1ly1gizmhbkrkcj20kr0nu3zc.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/" data-id="ckfg9yqyl0001lwuo2o0t0iav" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SpringBoot学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SpringMVC流程图</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/">easypoi导出动态表头excel</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/">SpringMVC流程图</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 CoderCheng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

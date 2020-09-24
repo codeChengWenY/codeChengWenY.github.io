@@ -64,6 +64,95 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SpringBoot学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-09-24T03:34:58.653Z" itemprop="datePublished">2020-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringBoot学习笔记</p>
+<p>1 约定大于配置</p>
+<p>2 实现自动配置 </p>
+<ol>
+<li>springbok应用启动</li>
+<li>@ Spring Bootapplication起作用</li>
+<li>@Enableauto Configuration</li>
+<li>@ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 Registrar类导入到容器中，而registrar类作用是扫描主配置类同级目录以及子包，并将相应的组件导入到springboote创建管理的容器中</li>
+<li>@ import( AutoConfigurationlmportselector. class):它通过将<br>Autoconfigurationlmportselector类导入到容器中， Auto Configurationlmportselector类作用是<br>通过 electlmports，方法执行的过程中，会使用内部工具类 Springfactoriesloader，查找<br>classpath上所有jar包中的META-INF/ spring, factories进行加载，实现将配置类信息交给<br>Springfactory加载器进行一系列的容器创建过程  </li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckfg9yqye0000lwuo8bru551n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-easypoi导出动态表头excel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/" class="article-date">
+  <time datetime="2020-09-24T03:34:58.633Z" itemprop="datePublished">2020-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/">easypoi导出动态表头excel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="easypoi导出动态表头excel"><a href="#easypoi导出动态表头excel" class="headerlink" title="easypoi导出动态表头excel"></a>easypoi导出动态表头excel</h2><p>注：文章转载来自  <a href="https://blog.csdn.net/ajax_yan/article/details/82289240" target="_blank" rel="noopener">https://blog.csdn.net/ajax_yan/article/details/82289240</a> </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.afterturn<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>easypoi-base<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynaCol</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        List&lt;ExcelExportEntity&gt; colList = <span class="keyword">new</span> ArrayList&lt;ExcelExportEntity&gt;();</span><br><span class="line">        ExcelExportEntity colEntity = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"商品名称"</span>, <span class="string">"title"</span>);</span><br><span class="line">        colEntity.setNeedMerge(<span class="keyword">true</span>);</span><br><span class="line">        colList.add(colEntity);</span><br><span class="line"></span><br><span class="line">        colEntity = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"供应商"</span>, <span class="string">"supplier"</span>);</span><br><span class="line">        colEntity.setNeedMerge(<span class="keyword">true</span>);</span><br><span class="line">        colList.add(colEntity);</span><br><span class="line"></span><br><span class="line">        ExcelExportEntity deliColGroup = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"得力"</span>, <span class="string">"deli"</span>);</span><br><span class="line">        List&lt;ExcelExportEntity&gt; deliColList = <span class="keyword">new</span> ArrayList&lt;ExcelExportEntity&gt;();</span><br><span class="line">        deliColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"市场价"</span>, <span class="string">"orgPrice"</span>));</span><br><span class="line">        deliColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"专区价"</span>, <span class="string">"salePrice"</span>));</span><br><span class="line">        deliColGroup.setList(deliColList);</span><br><span class="line">        colList.add(deliColGroup);</span><br><span class="line"></span><br><span class="line">        ExcelExportEntity jdColGroup = <span class="keyword">new</span> ExcelExportEntity(<span class="string">"京东"</span>, <span class="string">"jd"</span>);</span><br><span class="line">        List&lt;ExcelExportEntity&gt; jdColList = <span class="keyword">new</span> ArrayList&lt;ExcelExportEntity&gt;();</span><br><span class="line">        jdColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"市场价"</span>, <span class="string">"orgPrice"</span>));</span><br><span class="line">        jdColList.add(<span class="keyword">new</span> ExcelExportEntity(<span class="string">"专区价"</span>, <span class="string">"salePrice"</span>));</span><br><span class="line">        jdColGroup.setList(jdColList);</span><br><span class="line">        colList.add(jdColGroup);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        List&lt;Map&lt;String, Object&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, Object&gt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            Map&lt;String, Object&gt; valMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">            valMap.put(<span class="string">"title"</span>, <span class="string">"名称."</span> + i);</span><br><span class="line">            valMap.put(<span class="string">"supplier"</span>, <span class="string">"供应商."</span> + i);</span><br><span class="line"></span><br><span class="line">            List&lt;Map&lt;String, Object&gt;&gt; deliDetailList = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, Object&gt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">                Map&lt;String, Object&gt; deliValMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">                deliValMap.put(<span class="string">"orgPrice"</span>, <span class="string">"得力.市场价."</span> + j);</span><br><span class="line">                deliValMap.put(<span class="string">"salePrice"</span>, <span class="string">"得力.专区价."</span> + j);</span><br><span class="line">                deliDetailList.add(deliValMap);</span><br><span class="line">            &#125;</span><br><span class="line">            valMap.put(<span class="string">"deli"</span>, deliDetailList);</span><br><span class="line"></span><br><span class="line">            List&lt;Map&lt;String, Object&gt;&gt; jdDetailList = <span class="keyword">new</span> ArrayList&lt;Map&lt;String, Object&gt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; j++) &#123;</span><br><span class="line">                Map&lt;String, Object&gt; jdValMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">                jdValMap.put(<span class="string">"orgPrice"</span>, <span class="string">"京东.市场价."</span> + j);</span><br><span class="line">                jdValMap.put(<span class="string">"salePrice"</span>, <span class="string">"京东.专区价."</span> + j);</span><br><span class="line">                jdDetailList.add(jdValMap);</span><br><span class="line">            &#125;</span><br><span class="line">            valMap.put(<span class="string">"jd"</span>, jdDetailList);</span><br><span class="line"></span><br><span class="line">            list.add(valMap);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Workbook workbook = ExcelExportUtil.exportExcel(<span class="keyword">new</span> ExportParams(<span class="string">"价格分析表"</span>, <span class="string">"数据"</span>), colList,</span><br><span class="line">                list);</span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"D:/价格分析表.tt.xls"</span>);</span><br><span class="line">        workbook.write(fos);</span><br><span class="line">        fos.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="http://ww1.sinaimg.cn/large/c4c193b1ly1gizmhbkrkcj20kr0nu3zc.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/" data-id="ckfg9yqyl0001lwuo2o0t0iav" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SpringMVC流程图" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="article-date">
@@ -154,6 +243,51 @@
 
 
   
+    <article id="post-缓存穿透" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.468Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>缓存穿透</strong></p>
+<p>概念：是指查询数据库中一定不存在的数据。</p>
+<p>栗子：一个数据库中不存在的数据 每次查询为空，每次不进行缓存。</p>
+<p>解决：1 采用缓存空值的方式  设定缓存过期时间较短 比如设置60s</p>
+<p>​          2  采用布隆过滤器  （Google  ,Redis  都可以实现）</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" data-id="cke8fv1d1000740uofj4u7yhb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-numpy矩阵入门操作" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" class="article-date">
@@ -208,51 +342,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://codercheng.cn/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" data-id="cke8fv1cx000440uo0ujhhkyj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-缓存穿透" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" class="article-date">
-  <time datetime="2020-08-24T11:29:00.468Z" itemprop="datePublished">2020-08-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>缓存穿透</strong></p>
-<p>概念：是指查询数据库中一定不存在的数据。</p>
-<p>栗子：一个数据库中不存在的数据 每次查询为空，每次不进行缓存。</p>
-<p>解决：1 采用缓存空值的方式  设定缓存过期时间较短 比如设置60s</p>
-<p>​          2  采用布隆过滤器  （Google  ,Redis  都可以实现）</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" data-id="cke8fv1d1000740uofj4u7yhb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -449,137 +538,12 @@
 
 
   
-    <article id="post-Java 4种引用关系" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" class="article-date">
-  <time datetime="2020-08-24T11:29:00.462Z" itemprop="datePublished">2020-08-24</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/">Java 4种引用关系</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java 4种引用关系</p>
-<p>1 强引用</p>
-<p>概念 被强引用关联的对象不会被回收。</p>
-<p>使用 new 一个新对象的方式创建强引用。 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
-
-<p>2 弱引用</p>
-<p>被弱引用关联的对象一定会被回收，也就是说它只能存活到下一次垃圾回收发生之前。</p>
-<p>使用 WeakReference 类来创建弱引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">WeakReference&lt;Object&gt; wf=<span class="keyword">new</span> WeakReference&lt;Object&gt;(obj);</span><br><span class="line">obj=<span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>3 虚引用</p>
-<p>又称为 幽灵引用 或者幻影引用，一个对象是否有虚引用的存在，不会对其生存时间造成影响，也无法通过虚引用得到一个对象。</p>
-<p>为一个对象设置虚引用的唯一目的是能在这个对象被回收时收到一个系统的通知。</p>
-<p>使用PhantomReference 来创建虚引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">PhantomReference&lt;Object&gt; pf=<span class="keyword">new</span> PhantomReference&lt;object&gt;(obj,<span class="keyword">null</span>);</span><br><span class="line">obj=<span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
-
-<p>4 软引用</p>
-<p>被软引用关联的对象只有在内存不够的情况下才会被回收。</p>
-<p>使用SoftReference 类 来创建软引用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object obj=<span class="keyword">new</span> Object();</span><br><span class="line">SoftReference&lt;Object&gt; sf=<span class="keyword">new</span> SoftReference&lt;Object&gt;(obj);</span><br><span class="line">obj=<span class="keyword">null</span> <span class="comment">// 使对象只能被软引用关联。</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/24/Java%204%E7%A7%8D%E5%BC%95%E7%94%A8%E5%85%B3%E7%B3%BB/" data-id="cke8fv1cn000040uoex70eqd2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-177230_23种设计模式详解笔记Part1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/" class="article-date">
-  <time datetime="2020-08-24T11:29:00.462Z" itemprop="datePublished">2020-08-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/">177230_23种设计模式详解笔记Part1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="零、讲在前面"><a href="#零、讲在前面" class="headerlink" title="零、讲在前面"></a>零、讲在前面</h1><h2 id="1-学习基础要求："><a href="#1-学习基础要求：" class="headerlink" title="1.学习基础要求："></a>1.学习基础要求：</h2><p>（1）对JavaEE尤其面向对象思想有较为深刻的理解和使用经验；</p>
-<p>（2）熟练掌握eclipse或idea使用；</p>
-<p>（3）对Java有良好的编程习惯。</p>
-<h2 id="2-课程说明："><a href="#2-课程说明：" class="headerlink" title="2.课程说明："></a>2.课程说明：</h2><p>​    本课程主要讲解设计模式思想，对于开发工具使用、语法、编程习惯、代码细节不做过多讲解。</p>
-<p>​    课程使用环境及工具：jdk1.8 + idea2018.2.4</p>
-<h3 id="3-课程介绍"><a href="#3-课程介绍" class="headerlink" title="3.课程介绍"></a>3.课程介绍</h3><h1 id="一、设计模式概述"><a href="#一、设计模式概述" class="headerlink" title="一、设计模式概述"></a>一、设计模式概述</h1><h2 id="1-设计模式概念："><a href="#1-设计模式概念：" class="headerlink" title="1.设计模式概念："></a>1.设计模式概念：</h2><p>​    设计模式（Design Pattern）是一套被反复使用、多数人知晓的、经过分类的、代码设计经验的总结。</p>
-<p>​    使用设计模式的目的：为了代码可重用性、让代码更容易被他人理解、保证代码可靠性。 设计模式使代码编写真正工程化；设计模式是软件工程的基石脉络，如同大厦的结构一样。</p>
-<h2 id="2-设计模式简介："><a href="#2-设计模式简介：" class="headerlink" title="2.设计模式简介："></a>2.设计模式简介：</h2><p>​    设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。</p>
-<p>​    设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛应用的原因。</p>
-<h2 id="3-六大设计原则："><a href="#3-六大设计原则：" class="headerlink" title="3.六大设计原则："></a>3.六大设计原则：</h2><p>为什么要提倡“Design Pattern”呢？根本原因是为了代码复用，增加可维护性。那么怎么才能实现代码复用呢？面向对象有几个原则：<a href="https://baike.baidu.com/item/%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99" target="_blank" rel="noopener">单一职责原则</a> （Single Responsiblity Principle SRP）<a href="https://baike.baidu.com/item/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99" target="_blank" rel="noopener">开闭原则</a>（Open Closed Principle，OCP）、<a href="https://baike.baidu.com/item/%E9%87%8C%E6%B0%8F%E4%BB%A3%E6%8D%A2%E5%8E%9F%E5%88%99" target="_blank" rel="noopener">里氏代换原则</a>（Liskov Substitution Principle，LSP）、<a href="https://baike.baidu.com/item/%E4%BE%9D%E8%B5%96%E5%80%92%E8%BD%AC%E5%8E%9F%E5%88%99" target="_blank" rel="noopener">依赖倒转原则</a>（Dependency Inversion Principle，DIP）、<a href="https://baike.baidu.com/item/%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99" target="_blank" rel="noopener">接口隔离原则</a>（Interface Segregation Principle，ISP）、合成/聚合复用原则（Composite/Aggregate Reuse Principle，CARP）、最小知识原则（Principle of Least Knowledge，PLK，也叫<a href="https://baike.baidu.com/item/%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99" target="_blank" rel="noopener">迪米特法则</a>）。开闭原则具有理想主义的色彩，它是面向对象设计的终极目标。其他几条，则可以看做是开闭原则的实现方法。</p>
-<h3 id="（1）总原则：开闭原则（Open-Close-Principle）"><a href="#（1）总原则：开闭原则（Open-Close-Principle）" class="headerlink" title="（1）总原则：开闭原则（Open Close Principle）"></a>（1）总原则：开闭原则（Open Close Principle）</h3><p>​    开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代 码，而是要扩展原有代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类等，后面的具体设计中我们会提到这点。 单一职责原则不要存在多于一个导致类变更的原因，也就是说每个类应该实现单一的职责，如若不然，就应该把类拆分。 </p>
-<h3 id="（2）里氏替换原则（Liskov-Substitution-Principle）"><a href="#（2）里氏替换原则（Liskov-Substitution-Principle）" class="headerlink" title="（2）里氏替换原则（Liskov Substitution Principle）"></a>（2）里氏替换原则（Liskov Substitution Principle）</h3><p>​    里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。 LSP 是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实 现抽象化的具体步骤的规范。里氏替换原则中，子类对父类的方法尽量不要重写和重载。因为父类代表了定义好的结构，通过这个规范的接口与外界交互，子类不应该随便破坏它。</p>
-<h3 id="（3）依赖倒转原则（Dependence-Inversion-Principle）"><a href="#（3）依赖倒转原则（Dependence-Inversion-Principle）" class="headerlink" title="（3）依赖倒转原则（Dependence Inversion Principle）"></a>（3）依赖倒转原则（Dependence Inversion Principle）</h3><p>​    这个是开闭原则的基础，具体内容：面向接口编程，依赖于抽象而不依赖于具体。写代码时用到具体类时，不与具体类交互，而与具体类的上层接口交互。 </p>
-<h3 id="（4）接口隔离原则（Interface-Segregation-Principle）"><a href="#（4）接口隔离原则（Interface-Segregation-Principle）" class="headerlink" title="（4）接口隔离原则（Interface Segregation Principle）"></a>（4）接口隔离原则（Interface Segregation Principle）</h3><p>​    这个原则的意思是：每个接口中不存在子类用不到却必须实现的方法，如果不然，就要将接口 拆分。使用多个隔离的接口，比使用单个接口（多个接口方法集合到一个的接口）要好。</p>
-<h3 id="（5）迪米特法则（最少知道原则）（Demeter-Principle）"><a href="#（5）迪米特法则（最少知道原则）（Demeter-Principle）" class="headerlink" title="（5）迪米特法则（最少知道原则）（Demeter Principle）"></a>（5）迪米特法则（最少知道原则）（Demeter Principle）</h3><p>​    就是说：一个类对自己依赖的类知道的越少越好。也就是说无论被依赖的类多么复杂，都应该将逻辑封装方法的内部，通过 public 方法提供给外部。这样当被依赖的类变化时，才能最小的影响该类。 最少知道原则的另一个表达方式是：只与直接的朋友通信。类之间只要有耦合关系，就叫朋友关系。耦合分为依赖、关联、聚合、组合等。我们称出现为成员变量、方法参数、方法返回值中的类为直接朋友。局部变量、临时变量则不是直接的朋友。我们要求陌生的类不要作为局部 变量出现在类中。 </p>
-<h3 id="（6）合成复用原则（Composite-Reuse-Principle）"><a href="#（6）合成复用原则（Composite-Reuse-Principle）" class="headerlink" title="（6）合成复用原则（Composite Reuse Principle）"></a>（6）合成复用原则（Composite Reuse Principle）</h3><p>​    原则是尽量首先使用合成/聚合的方式，而不是使用继承。 </p>
-<h2 id="4-设计模式的分类："><a href="#4-设计模式的分类：" class="headerlink" title="4.设计模式的分类："></a>4.设计模式的分类：</h2><p>总体来说设计模式分为三大类：</p>
-<p>创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。</p>
-<p>结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。</p>
-<p>行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。</p>
-<p>其实还有两类：并发型模式和线程池模式，以图的形式表示：</p>
-<p><img src="C:%5CUsers%5Clenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1554254661859.png" alt="1554254661859"></p>
-        
-          <p class="article-more-link">
-            <a href="/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/" data-id="cke8fv1dl000a40uofzm25sjj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -617,6 +581,14 @@
       <ul>
         
           <li>
+            <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/">easypoi导出动态表头excel</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/">SpringMVC流程图</a>
           </li>
         
@@ -625,15 +597,7 @@
           </li>
         
           <li>
-            <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
-          </li>
-        
-          <li>
             <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/24/hello-world/">Hello World</a>
           </li>
         
       </ul>
