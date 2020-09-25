@@ -15,7 +15,7 @@
 <meta property="og:description" content="SpringBoot学习笔记 1 约定大于配置2 实现自动配置   springboot应用启动 @ Spring Bootapplication起作用 @Enableauto Configuration @ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 R">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-24T03:34:58.653Z">
-<meta property="article:modified_time" content="2020-09-25T07:36:26.489Z">
+<meta property="article:modified_time" content="2020-09-25T07:41:22.692Z">
 <meta property="article:author" content="CoderCheng">
 <meta name="twitter:card" content="summary">
   
@@ -95,7 +95,7 @@
 <li>@ Spring Bootapplication起作用</li>
 <li>@Enableauto Configuration</li>
 <li>@ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 Registrar类导入到容器中，而registrar类作用是扫描主配置类同级目录以及子包，并将相应的组件导入到springboote创建管理的容器中</li>
-<li>@ import( AutoConfigurationlmportselector. class):它通过将<br>Autoconfigurationlmportselector类导入到容器中， Auto Configurationlmportselector类作用是<br>通过 electlmports，方法执行的过程中，会使用内部工具类 Springfactoriesloader，查找<br>classpath上所有jar包中的META-INF/ spring, factories进行加载，实现将配置类信息交给<br>Springfactory加载器进行一系列的容器创建过程  </li>
+<li>@ import( AutoConfigurationlmportselector. class):它通过将<br>Autoconfigurationlmportselector类导入到容器中， AutoConfigurationlmportselector类作用是<br>通过selectlmports方法执行的过程中，会使用内部工具类 Springfactoriesloader，查找<br>classpath上所有jar包中的META-INF/spring.factories进行加载，实现将配置类信息交给<br>Springfactory加载器进行一系列的容器创建过程  </li>
 </ol>
 
       
