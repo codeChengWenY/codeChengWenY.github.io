@@ -1,12 +1,8 @@
 SpringBoot学习笔记
 
 1 约定大于配置
-
-
-
 2 实现自动配置 
-
-1. springbok应用启动
+1. springboot应用启动
 2. @ Spring Bootapplication起作用
 3. @Enableauto Configuration
 4. @ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 Registrar类导入到容器中，而registrar类作用是扫描主配置类同级目录以及子包，并将相应的组件导入到springboote创建管理的容器中
