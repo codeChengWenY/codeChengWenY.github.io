@@ -1,4 +1,5 @@
 ​                                                  **Tomcat体系结构（图⽂并茂）** 
+
 Tomcat 设计了两个核心组件连接器（**Connector**）和容器（**Container**）来完成 Tomcat 的两大核心功能。
 
 连接器，负责对外交流： 处理Socket连接，负责⽹络字节流与Request和Response对象的转化；
@@ -7,7 +8,6 @@ Tomcat 设计了两个核心组件连接器（**Connector**）和容器（**Cont
 
 ![](http://ww1.sinaimg.cn/large/c4c193b1ly1gj6j9nldhdj20oh06aq3a.jpg)
 
-aaa
 
 - **EndPoint**
 
