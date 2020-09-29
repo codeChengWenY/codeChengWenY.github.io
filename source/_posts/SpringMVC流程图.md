@@ -30,5 +30,5 @@ SpringMvc流程图
 
 
 
-![](http://ww1.sinaimg.cn/large/c4c193b1ly1girizbsai9j20rm0e2jtb.jpg)
+![](https://gitee.com/adc123321/blog_img/raw/master/image/202009/29/123653-327041.jpeg)
 
