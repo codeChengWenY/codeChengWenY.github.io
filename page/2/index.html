@@ -64,6 +64,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Mybatis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/Mybatis/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.463Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/Mybatis/">Mybatis</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>MyBatis框架学习笔记</p>
+<p>是一款优秀的ORM（Object/Relation Mapping）对象关系映射 半自动轻量级持久层框架。</p>
+<p>大量使用设计模式</p>
+<p>​    1  Builder模式   SqlSessionFactoryBuilder</p>
+<p> 含义 ：使用多个简单的对象构建成一个复杂的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">InputStream resourceAsStream = Resources.getResourceAsStream(<span class="string">"sqlMapConfig.xml"</span>);</span><br><span class="line">SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(resourceAsStream);</span><br></pre></td></tr></table></figure>
+
+<p> 2   工厂模式  SqlSessionFactory</p>
+<p>​    含义：根据参数的不同 返回不同类的实例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line"><span class="comment">// 设置自动提交</span></span><br><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession(<span class="keyword">boolean</span> autoCommit);</span><br></pre></td></tr></table></figure>
+
+<p>3  代理模式</p>
+<p>动态代理模式  </p>
+<p>  一般采用接口的形式定义Mapper  其底层使用的就是Jdk的动态代理技术</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">IUserDao mapper = sqlSession.getMapper(IUserDao<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 会调用 MapperProxy 类中的方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 如果是 Object 定义的方法，直接调用</span></span><br><span class="line">            <span class="keyword">if</span> (Object<span class="class">.<span class="keyword">class</span>.<span class="title">equals</span>(<span class="title">method</span>.<span class="title">getDeclaringClass</span>())) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> method.invoke(<span class="keyword">this</span>, args);</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isDefaultMethod(method)) &#123;</span><br><span class="line">                <span class="keyword">return</span> invokeDefaultMethod(proxy, method, args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="keyword">throw</span> ExceptionUtil.unwrapThrowable(t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 获得 MapperMethod 对象</span></span><br><span class="line">        <span class="keyword">final</span> MapperMethod mapperMethod = cachedMapperMethod(method);</span><br><span class="line">        <span class="comment">// 重点在这：MapperMethod最终调用了执行的方法</span></span><br><span class="line">        <span class="keyword">return</span> mapperMethod.execute(sqlSession, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>总体流程<br>   1加载配置文件并初始化<br>     将文件 加载成字节输入流,并将xml文件内容解析到Configuration类中的属性中<br>2处理操作请求<br>   SqlSession接口的默认实现DefaultSqlSession 中的Executor 执行器,解析参数，然后执行底层的JDBC操作。<br>3 返回处理结果<br>   执行器 具体执行后 将数据库的查询 结果通过反射对应的具体的类中。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/Mybatis/" data-id="cke8fv1cu000240uohcnqc5uo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-177230_23种设计模式详解笔记Part1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/24/177230_23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0Part1/" class="article-date">
@@ -237,6 +289,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/">Tomcat体系结构（图⽂并茂）</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot学习笔记</a>
           </li>
         
@@ -250,10 +306,6 @@
         
           <li>
             <a href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
           </li>
         
       </ul>
