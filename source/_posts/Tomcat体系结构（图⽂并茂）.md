@@ -6,7 +6,7 @@ Tomcat 设计了两个核心组件连接器（**Connector**）和容器（**Cont
 
 容器，负责内部处理：加载和管理Servlet，以及具体处理Request请求；
 
-![](http://ww1.sinaimg.cn/large/c4c193b1ly1gj6j9nldhdj20oh06aq3a.jpg)
+![](https://gitee.com/adc123321/blog_img/raw/master/image/202010/10/135149-426752.jpeg)
 
 
 - **EndPoint**
@@ -35,7 +35,7 @@ Tomcat/Catalina实例
 
 负责解析Tomcat的配置文件（server.xml） , 以此来创建服务器Server组件并进行管理
 
-![](http://ww1.sinaimg.cn/large/c4c193b1ly1gj6iur0yrsj20jk0jx76t.jpg)
+![](https://gitee.com/adc123321/blog_img/raw/master/image/202010/10/135359-556021.jpeg)
 
 
 
