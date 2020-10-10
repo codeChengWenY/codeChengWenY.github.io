@@ -64,6 +64,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-分布式调度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/" class="article-date">
+  <time datetime="2020-10-10T06:09:05.173Z" itemprop="datePublished">2020-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/">分布式调度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="分布式调度"><a href="#分布式调度" class="headerlink" title="分布式调度"></a>分布式调度</h3><p>含义：</p>
+<ol>
+<li>运行在分布式集群环境下的调度任务（同一个定时任务程序部署多份，只应该有一个定时任务在执行）</li>
+<li>分布式调度一&gt;定时任务的分布式一&gt;定时任务的拆分（即为把一个大的作业任务拆分为多个小的作<br> 任务，同时执行)</li>
+</ol>
+<p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202010/10/142035-855334.png" alt="image-20201010142035844"></p>
+<p>定时任务和消息队列的区别</p>
+<ol>
+<li><p>共同点：</p>
+<p>异步处理<br>比如注册、下单事件<br>应用解耦<br>不管定时任务作业还是MQ都可以作为两个应用之间的齿轮实现应用解耦，这个齿轮可以中转<br>数据，当然单体服务不需要考虑这些，服务拆分的时候往往都会考虑<br>流量削峰<br>双十一的时候，任务作业和MQ都可以用来扛流量，后端系统根据服务能力定时处理订单或者<br>从MQ抓取订单抓取到一个订单到来事件的话触发处理，对于前端用户来说看到的结果是已经<br>单成功了，下单是不受任何影响的。</p>
+</li>
+<li><p>本质不同<br> 定时任务作业是时间驱动，而MQ是事件驱动<br> 时间驱动是不可代替的，比如金融系统每日的利息结算，不是说利息来一条（利息到来事件）就算<br> 而往往是通过定时任务批量计算<br> 所以，定时任务作业更倾向于批处理，MQ傾向于逐条处理</p>
+</li>
+</ol>
+<p>分布式调度框架 Elastic-Job</p>
+<p><strong>Elastic-Job是当当网在2015年开源的一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。在这里，主要对Elastic-Job-Lite技术做分析</strong></p>
+<p><img src="https://sdkfiledl.jiguang.cn/community/30070/image/Fth9FI4AGb7sTTp-guuGbsRCsf3H.png" alt="null"></p>
+<p>如上图所示，elastic-job-lite通过zk实现各服务的注册、控制及协调：</p>
+<ul>
+<li>第一台服务器上线触发主服务器选举。主服务器一旦下线，则重新触发选举，选举过程中阻塞，只有主服务器选举完成，才会执行其他任务。</li>
+<li>某服务节点(引入elastic-job-lite-jar包)上线时会自动将服务器信息注册到注册中心，下线时会自动更新服务器状态。</li>
+<li>主节点选举，服务器上下线，分片总数变更均更新重新分片标记。</li>
+<li>定时任务触发时，如需重新分片，则通过主服务器分片，分片过程中阻塞，分片结束后才可执行任务。如分片过程中主服务器下线，则先选举主服务器，再分片。</li>
+<li>通过上一项说明可知，为了维持作业运行时的稳定性，运行过程中只会标记分片状态，不会重新分片。分片仅可能发生在下次任务触发前。</li>
+<li>每次分片都会按服务器IP排序，保证分片结果不会产生较大波动。</li>
+<li>实现失效转移功能，在某台服务器执行完毕后主动抓取未分配的分片，并且在某台服务器下线后主动寻找可用的服务器执行任务</li>
+</ul>
+<h2 id="调度问题的复杂性"><a href="#调度问题的复杂性" class="headerlink" title="调度问题的复杂性"></a>调度问题的复杂性</h2><ul>
+<li><p>弹性扩容<br>每个业务服务节点同时也是一个定时任务执行者, 各任务执行者之间不会直接通信，而是通过zookeeper协调, 定时任务状态存储在zk, 去中心化部署。<br>因此可以很方便地增加或者减少服务节点。</p>
+</li>
+<li><p>失效转移<br>如果在任务执行过程中有一个执行实例挂了，那么之前被分配到这个实例的任务（或者分片）会在下次任务执行之前被重新分配到其他正常节点实例上执行。</p>
+</li>
+<li><p>任务分片<br>elastic-job-lite并不直接提供数据处理的功能，框架只会将分片项分配至各个运行中的服务节点，开发者需要自行处理分片项与真实数据的对应关系。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/" data-id="ckg3b17l800002wuo49qld55a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Tomcat体系结构（图⽂并茂）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/" class="article-date">
@@ -510,50 +581,6 @@
 
 
   
-    <article id="post-SpringBoot经典学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-08-24T11:29:00.465Z" itemprop="datePublished">2020-08-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot经典学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="跟武哥一起学习Spring-Boot"><a href="#跟武哥一起学习Spring-Boot" class="headerlink" title="跟武哥一起学习Spring Boot"></a>跟武哥一起学习Spring Boot</h1><h1 id="作者信息"><a href="#作者信息" class="headerlink" title="作者信息"></a>作者信息</h1><p>本课程首发于 CSDN GitChat 达人课《跟武哥一起学Spring Boot》，该文档为课程详细笔记。<br>作者：倪升武（武哥）<br>微信公众号：武哥聊编程<br><img src="https://img-blog.csdnimg.cn/202002150421550.jpg" alt="武哥聊编程"></p>
-<blockquote>
-<p>版权申明：本课程已经免费，但版权属于 CSDN 和作者，未经允许，不得将该笔记用于商业用途和其他不正当用途，否则追究法律责任。</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/24/SpringBoot%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="cke8fv1dw000b40uo6ro298kj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -584,7 +611,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
     </div>
   </div>
 
@@ -595,6 +622,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/">分布式调度</a>
+          </li>
         
           <li>
             <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/">Tomcat体系结构（图⽂并茂）</a>
@@ -610,10 +641,6 @@
         
           <li>
             <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/">SpringMVC流程图</a>
-          </li>
-        
-          <li>
-            <a href="/2020/08/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E4%B8%8A%E4%BC%A0/">自动化博客上传</a>
           </li>
         
       </ul>

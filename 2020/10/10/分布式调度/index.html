@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>分布式调度 | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="分布式调度含义：  运行在分布式集群环境下的调度任务（同一个定时任务程序部署多份，只应该有一个定时任务在执行） 分布式调度一&gt;定时任务的分布式一&gt;定时任务的拆分（即为把一个大的作业任务拆分为多个小的作 任务，同时执行)   定时任务和消息队列的区别  共同点： 异步处理比如注册、下单事件应用解耦不管定时任务作业还是MQ都可以作为两个应用之间的齿轮实现应用解耦，这个齿轮可以中转数据，当然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式调度">
+<meta property="og:url" content="http://codercheng.cn/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="分布式调度含义：  运行在分布式集群环境下的调度任务（同一个定时任务程序部署多份，只应该有一个定时任务在执行） 分布式调度一&gt;定时任务的分布式一&gt;定时任务的拆分（即为把一个大的作业任务拆分为多个小的作 任务，同时执行)   定时任务和消息队列的区别  共同点： 异步处理比如注册、下单事件应用解耦不管定时任务作业还是MQ都可以作为两个应用之间的齿轮实现应用解耦，这个齿轮可以中转数据，当然">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202010/10/142035-855334.png">
+<meta property="og:image" content="https://sdkfiledl.jiguang.cn/community/30070/image/Fth9FI4AGb7sTTp-guuGbsRCsf3H.png">
+<meta property="article:published_time" content="2020-10-10T06:09:05.173Z">
+<meta property="article:modified_time" content="2020-10-10T06:33:49.012Z">
+<meta property="article:author" content="CoderCheng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202010/10/142035-855334.png">
+  
+    <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://codercheng.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-分布式调度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/" class="article-date">
+  <time datetime="2020-10-10T06:09:05.173Z" itemprop="datePublished">2020-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分布式调度
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="分布式调度"><a href="#分布式调度" class="headerlink" title="分布式调度"></a>分布式调度</h3><p>含义：</p>
+<ol>
+<li>运行在分布式集群环境下的调度任务（同一个定时任务程序部署多份，只应该有一个定时任务在执行）</li>
+<li>分布式调度一&gt;定时任务的分布式一&gt;定时任务的拆分（即为把一个大的作业任务拆分为多个小的作<br> 任务，同时执行)</li>
+</ol>
+<p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202010/10/142035-855334.png" alt="image-20201010142035844"></p>
+<p>定时任务和消息队列的区别</p>
+<ol>
+<li><p>共同点：</p>
+<p>异步处理<br>比如注册、下单事件<br>应用解耦<br>不管定时任务作业还是MQ都可以作为两个应用之间的齿轮实现应用解耦，这个齿轮可以中转<br>数据，当然单体服务不需要考虑这些，服务拆分的时候往往都会考虑<br>流量削峰<br>双十一的时候，任务作业和MQ都可以用来扛流量，后端系统根据服务能力定时处理订单或者<br>从MQ抓取订单抓取到一个订单到来事件的话触发处理，对于前端用户来说看到的结果是已经<br>单成功了，下单是不受任何影响的。</p>
+</li>
+<li><p>本质不同<br> 定时任务作业是时间驱动，而MQ是事件驱动<br> 时间驱动是不可代替的，比如金融系统每日的利息结算，不是说利息来一条（利息到来事件）就算<br> 而往往是通过定时任务批量计算<br> 所以，定时任务作业更倾向于批处理，MQ傾向于逐条处理</p>
+</li>
+</ol>
+<p>分布式调度框架 Elastic-Job</p>
+<p><strong>Elastic-Job是当当网在2015年开源的一个分布式调度解决方案，由两个相互独立的子项目Elastic-Job-Lite和Elastic-Job-Cloud组成。在这里，主要对Elastic-Job-Lite技术做分析</strong></p>
+<p><img src="https://sdkfiledl.jiguang.cn/community/30070/image/Fth9FI4AGb7sTTp-guuGbsRCsf3H.png" alt="null"></p>
+<p>如上图所示，elastic-job-lite通过zk实现各服务的注册、控制及协调：</p>
+<ul>
+<li>第一台服务器上线触发主服务器选举。主服务器一旦下线，则重新触发选举，选举过程中阻塞，只有主服务器选举完成，才会执行其他任务。</li>
+<li>某服务节点(引入elastic-job-lite-jar包)上线时会自动将服务器信息注册到注册中心，下线时会自动更新服务器状态。</li>
+<li>主节点选举，服务器上下线，分片总数变更均更新重新分片标记。</li>
+<li>定时任务触发时，如需重新分片，则通过主服务器分片，分片过程中阻塞，分片结束后才可执行任务。如分片过程中主服务器下线，则先选举主服务器，再分片。</li>
+<li>通过上一项说明可知，为了维持作业运行时的稳定性，运行过程中只会标记分片状态，不会重新分片。分片仅可能发生在下次任务触发前。</li>
+<li>每次分片都会按服务器IP排序，保证分片结果不会产生较大波动。</li>
+<li>实现失效转移功能，在某台服务器执行完毕后主动抓取未分配的分片，并且在某台服务器下线后主动寻找可用的服务器执行任务</li>
+</ul>
+<h2 id="调度问题的复杂性"><a href="#调度问题的复杂性" class="headerlink" title="调度问题的复杂性"></a>调度问题的复杂性</h2><ul>
+<li><p>弹性扩容<br>每个业务服务节点同时也是一个定时任务执行者, 各任务执行者之间不会直接通信，而是通过zookeeper协调, 定时任务状态存储在zk, 去中心化部署。<br>因此可以很方便地增加或者减少服务节点。</p>
+</li>
+<li><p>失效转移<br>如果在任务执行过程中有一个执行实例挂了，那么之前被分配到这个实例的任务（或者分片）会在下次任务执行之前被重新分配到其他正常节点实例上执行。</p>
+</li>
+<li><p>任务分片<br>elastic-job-lite并不直接提供数据处理的功能，框架只会将分片项分配至各个运行中的服务节点，开发者需要自行处理分片项与真实数据的对应关系。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/" data-id="ckg3b17l800002wuo49qld55a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Tomcat体系结构（图⽂并茂）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/">分布式调度</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/">Tomcat体系结构（图⽂并茂）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/">easypoi导出动态表头excel</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/15/SpringMVC%E6%B5%81%E7%A8%8B%E5%9B%BE/">SpringMVC流程图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 CoderCheng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
