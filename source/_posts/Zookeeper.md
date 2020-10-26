@@ -1,4 +1,4 @@
-​                                                            Zookeeper 
+                                                            Zookeeper 
 
 
 
@@ -12,7 +12,9 @@
 
 Zookeeper维护一个类似文件系统的数据结构：
 
-![img](https://img-blog.csdn.net/201807121434154?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmFfNjY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![201807121434154](https://gitee.com/adc123321/blog_img/raw/master/image/202010/26/175239-655046.png)
+
+
 
 每个子目录项如 NameService 都被称作为 znode(目录节点)，和文件系统一样，我们能够自由的增加、删除znode，在一个znode下增加、删除子znode，唯一的不同在于znode是可以存储数据的
 
@@ -36,3 +38,4 @@ Zookeeper维护一个类似文件系统的数据结构：
 
 客户端注册监听它关心的目录节点，当目录节点发生变化（数据改变、被删除、子目录节点增加删除）时，zookeeper会通知客户端。
 
+![img](https://img-blog.csdn.net/201807121434154?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmFfNjY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
