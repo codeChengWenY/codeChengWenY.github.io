@@ -5,19 +5,21 @@
   
 
   
-  <title>SpringBoot学习笔记 | 个人博客</title>
+  <title>Zookeeper | 个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SpringBoot学习笔记 1 约定大于配置2 实现自动配置   springboot应用启动 @ Spring Bootapplication起作用 @Enableauto Configuration @ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 R">
+  <meta name="description" content="​                                                            Zookeeper  1 定义 它是一个分布式服务框架，是Apache Hadoop 的一个子项目，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、分布式应用配置项的管理等。 2 结构 1、文件系统 Zookeeper维护一个类">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot学习笔记">
-<meta property="og:url" content="http://codercheng.cn/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Zookeeper">
+<meta property="og:url" content="http://codercheng.cn/2020/10/26/Zookeeper/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="SpringBoot学习笔记 1 约定大于配置2 实现自动配置   springboot应用启动 @ Spring Bootapplication起作用 @Enableauto Configuration @ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 R">
+<meta property="og:description" content="​                                                            Zookeeper  1 定义 它是一个分布式服务框架，是Apache Hadoop 的一个子项目，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、分布式应用配置项的管理等。 2 结构 1、文件系统 Zookeeper维护一个类">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-24T03:34:58.653Z">
-<meta property="article:modified_time" content="2020-09-25T07:41:22.692Z">
+<meta property="og:image" content="https://img-blog.csdn.net/201807121434154?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmFfNjY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="article:published_time" content="2020-10-26T06:07:12.612Z">
+<meta property="article:modified_time" content="2020-10-26T06:10:06.162Z">
 <meta property="article:author" content="CoderCheng">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/201807121434154?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmFfNjY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
   
     <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
   
@@ -66,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-SpringBoot学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-09-24T03:34:58.653Z" itemprop="datePublished">2020-09-24</time>
+    <a href="/2020/10/26/Zookeeper/" class="article-date">
+  <time datetime="2020-10-26T06:07:12.612Z" itemprop="datePublished">2020-10-26</time>
 </a>
     
   </div>
@@ -80,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SpringBoot学习笔记
+      Zookeeper
     </h1>
   
 
@@ -88,20 +90,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>SpringBoot学习笔记</p>
-<p>1 约定大于配置<br>2 实现自动配置 </p>
-<ol>
-<li>springboot应用启动</li>
-<li>@ Spring Bootapplication起作用</li>
-<li>@Enableauto Configuration</li>
-<li>@ AutoConfigurationpackage：这个组合注解主要是@ import( Autoconfigurationpackages. Registrar. class),它通过将 Registrar类导入到容器中，而registrar类作用是扫描主配置类同级目录以及子包，并将相应的组件导入到springboote创建管理的容器中</li>
-<li>@ import( AutoConfigurationlmportselector. class):它通过将<br>Autoconfigurationlmportselector类导入到容器中， AutoConfigurationlmportselector类作用是<br>通过selectlmports方法执行的过程中，会使用内部工具类 Springfactoriesloader，查找<br>classpath上所有jar包中的META-INF/spring.factories进行加载，实现将配置类信息交给<br>Springfactory加载器进行一系列的容器创建过程  </li>
-</ol>
+        <p>​                                                            Zookeeper </p>
+<p>1 定义</p>
+<p>它是一个分布式服务框架，是Apache Hadoop 的一个子项目，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、分布式应用配置项的管理等。</p>
+<p>2 结构</p>
+<p><strong>1、文件系统</strong></p>
+<p>Zookeeper维护一个类似文件系统的数据结构：</p>
+<p><img src="https://img-blog.csdn.net/201807121434154?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2phdmFfNjY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<p>每个子目录项如 NameService 都被称作为 znode(目录节点)，和文件系统一样，我们能够自由的增加、删除znode，在一个znode下增加、删除子znode，唯一的不同在于znode是可以存储数据的</p>
+<ul>
+<li><p><strong>PERSISTENT-持久化目录节点</strong></p>
+<p>客户端与zookeeper断开连接后，该节点依旧存在</p>
+</li>
+<li><p><strong>PERSISTENT_SEQUENTIAL-持久化顺序编号目录节点</strong></p>
+<p>客户端与zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号</p>
+</li>
+<li><p><strong>EPHEMERAL-临时目录节点</strong></p>
+<p>客户端与zookeeper断开连接后，该节点被删除</p>
+</li>
+<li><p><strong>EPHEMERAL_SEQUENTIAL-临时顺序编号目录节点</strong></p>
+<p>客户端与zookeeper断开连接后，该节点被删除，只是Zookeeper给该节点名称进行顺序编号</p>
+</li>
+</ul>
+<p><strong>2、 监听通知机制</strong></p>
+<p>客户端注册监听它关心的目录节点，当目录节点发生变化（数据改变、被删除、子目录节点增加删除）时，zookeeper会通知客户端。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckfg9zouz0000touo76fd6cwr" class="article-share-link">Share</a>
+      <a data-url="http://codercheng.cn/2020/10/26/Zookeeper/" data-id="ckgqcu09z0000qkuoh7iraiub" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,19 +127,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Tomcat体系结构（图⽂并茂）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/09/24/easypoi%E5%AF%BC%E5%87%BA%E5%8A%A8%E6%80%81%E8%A1%A8%E5%A4%B4excel/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/10/19/%E5%9F%BA%E4%BA%8Enetty%20%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89RPC/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">easypoi导出动态表头excel</div>
+      <div class="article-nav-title">基于netty 实现自定义RPC</div>
     </a>
   
 </nav>
