@@ -64,6 +64,134 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Dubbo介绍" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/11/Dubbo%E4%BB%8B%E7%BB%8D/" class="article-date">
+  <time datetime="2020-11-11T09:50:21.408Z" itemprop="datePublished">2020-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/11/Dubbo%E4%BB%8B%E7%BB%8D/">Dubbo介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>Dubbo 学习笔记</code></pre><h3 id="Dubbo介绍"><a href="#Dubbo介绍" class="headerlink" title="Dubbo介绍"></a>Dubbo介绍</h3><p><a href="http://dubbo.apache.org/zh-cn/docs/2.7/user/preface/background/" target="_blank" rel="noopener">官网参考资料</a></p>
+<h2 id="什么是Dubbo"><a href="#什么是Dubbo" class="headerlink" title="什么是Dubbo"></a>什么是Dubbo</h2><p>Apache Dubbo是 一款高性能的Java RPC框架。其前身是阿里巴巴公司开源的一个高性能、轻量级的开源Java RPC框架，可以和Spring框架无缝集成。</p>
+<h3 id="Dubbo特性"><a href="#Dubbo特性" class="headerlink" title="Dubbo特性"></a>Dubbo特性</h3><ul>
+<li><p>面向接口代理的高性能RPC调用</p>
+</li>
+<li><p>智能负载均衡</p>
+</li>
+<li><p>服务自动注册和发现</p>
+</li>
+<li><p>高度可扩展能力 SPI</p>
+</li>
+<li><p>可视化服务治理与运维</p>
+<h3 id="Dubbo处理流程"><a href="#Dubbo处理流程" class="headerlink" title="Dubbo处理流程"></a>Dubbo处理流程</h3></li>
+</ul>
+<p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/173721-660328.png" alt="下载"></p>
+<p>图解：</p>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provider</td>
+<td>服务提供者</td>
+</tr>
+<tr>
+<td>Consumer</td>
+<td>服务消费者</td>
+</tr>
+<tr>
+<td>Registry</td>
+<td>服务注册与发现的注册中心</td>
+</tr>
+<tr>
+<td>Monitor</td>
+<td>监控中心，统计服务调用次数调用时间</td>
+</tr>
+<tr>
+<td>Container</td>
+<td>服务运行容器，负责启动加载运行生产者</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>线条</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>蓝色虚线</td>
+<td>服务启动后的初始化过程</td>
+</tr>
+<tr>
+<td>红色虚线</td>
+<td>异步过程</td>
+</tr>
+<tr>
+<td>红色实现</td>
+<td>同步调用过程</td>
+</tr>
+</tbody></table>
+<h2 id="Dubbo高级进阶"><a href="#Dubbo高级进阶" class="headerlink" title="Dubbo高级进阶"></a>Dubbo高级进阶</h2><h3 id="扩展点配置-SPI"><a href="#扩展点配置-SPI" class="headerlink" title="扩展点配置 SPI"></a>扩展点配置 SPI</h3><p>SPI 全称为 (Service Provider Interface) ，是JDK内置的一种服务提供发现机制。</p>
+<p>目前有不少框架用它来做服务的扩展发现，简单来说，它就是一种动态替换发现的机制。</p>
+<p>使用SPI机制的优势是实现解耦，使得第三方服务模块的装配控制逻辑与调用者的业务代码分离。</p>
+<p><img src="https://gitee.com/wjy_jy/stage-three-module-three/raw/master/%E7%AC%94%E8%AE%B0/JDK-SPI.png" alt="JDK-SPI"></p>
+<p>Java中如果想要使用SPI功能，先提供标准服务接口，然后再提供相关接口实现和调用者。这样就可以通过SPI机制中约定好的信息进行查询相应的接口实现。</p>
+<p>SPI遵循如下约定:</p>
+<ol>
+<li><p>当服务提供者提供了接口的一种具体实现后，在META-INF/services目录下创建一个以“接口全限定名”为命名的文件，内容为实现类的全限定名;</p>
+</li>
+<li><p>接口实现类所在的jar包放在主程序的classpath中;</p>
+</li>
+<li><p>主程序通过java.util.ServiceLoader动态装载实现模块。</p>
+<p>它通过扫描META-INF/services目录下的配置文件找到实现类的全限定名，把类加载到JVM;</p>
+</li>
+<li><p>SPI的实现类必须携带一个无参构造方法</p>
+</li>
+</ol>
+<h4 id="扩展点-Dubbo中的SPI"><a href="#扩展点-Dubbo中的SPI" class="headerlink" title="扩展点-Dubbo中的SPI"></a>扩展点-Dubbo中的SPI</h4><h5 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h5><p>Dubbo 的扩展点加载从 JDK 标准的 SPI (Service Provider Interface) 扩展点发现机制加强而来。</p>
+<p>Dubbo 改进了 JDK 标准的 SPI 的以下问题：</p>
+<ul>
+<li>JDK 标准的 SPI 会<strong>一次性实例化扩展点所有实现</strong>，如果有扩展实现初始化很耗时，但如果没用上也加载，会很浪费资源。</li>
+<li>如果扩展点加载失败，连扩展点的名称都拿不到了。比如：JDK 标准的 ScriptEngine，通过<code>getName()</code> 获取脚本类型的名称，但如果 RubyScriptEngine 因为所依赖的 jruby.jar 不存在，导致 RubyScriptEngine 类加载失败，这个失败原因被吃掉了，和 ruby 对应不起来，当用户执行 ruby 脚本时，会报不支持 ruby，而不是真正失败的原因。</li>
+<li>增加了对扩展点 IoC 和 AOP 的支持，一个扩展点可以直接 setter 注入其它扩展点。</li>
+</ul>
+<h5 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h5><ol>
+<li>当服务提供者提供了接口的一种具体实现后，在`META-INF/dubbo/目录下创建一个以“接口全限定名”为命名的文件，内容为实现类的全限定名</li>
+<li>内容为：<code>配置名=扩展实现类全限定名</code>，多个实现类用换行符分隔</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/11/11/Dubbo%E4%BB%8B%E7%BB%8D/" data-id="ckhd83gko0000vkuoayzkge6f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Dubbo习题说明" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/" class="article-date">
@@ -561,51 +689,6 @@
 
 
   
-    <article id="post-缓存穿透" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" class="article-date">
-  <time datetime="2020-08-24T11:29:00.468Z" itemprop="datePublished">2020-08-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/">缓存穿透</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>缓存穿透</strong></p>
-<p>概念：是指查询数据库中一定不存在的数据。</p>
-<p>栗子：一个数据库中不存在的数据 每次查询为空，每次不进行缓存。</p>
-<p>解决：1 采用缓存空值的方式  设定缓存过期时间较短 比如设置60s</p>
-<p>​          2  采用布隆过滤器  （Google  ,Redis  都可以实现）</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/24/%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F/" data-id="cke8fv1d1000740uofj4u7yhb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -649,6 +732,10 @@
       <ul>
         
           <li>
+            <a href="/2020/11/11/Dubbo%E4%BB%8B%E7%BB%8D/">Dubbo介绍</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/">Dubbo习题说明</a>
           </li>
         
@@ -662,10 +749,6 @@
         
           <li>
             <a href="/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/">分布式调度</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/">Tomcat体系结构（图⽂并茂）</a>
           </li>
         
       </ul>
