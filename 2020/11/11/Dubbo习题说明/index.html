@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Dubbo习题说明 | 个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Dubbo编程题      项目结构说明 dubbo-web      测试Consumer dubbo-server-monitor   TP90  TP99性能监听Filter dubbo_spi_filter   IP透传Filter service-api    通用RPC接口 service-provider           服务端 service-provider-1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dubbo习题说明">
+<meta property="og:url" content="http://codercheng.cn/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="Dubbo编程题      项目结构说明 dubbo-web      测试Consumer dubbo-server-monitor   TP90  TP99性能监听Filter dubbo_spi_filter   IP透传Filter service-api    通用RPC接口 service-provider           服务端 service-provider-1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171252-508620.png">
+<meta property="og:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171316-28018.png">
+<meta property="og:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171344-943669.png">
+<meta property="og:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171519-819862.png">
+<meta property="og:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/172955-469131.png">
+<meta property="article:published_time" content="2020-11-11T09:34:57.649Z">
+<meta property="article:modified_time" content="2020-11-11T09:34:57.957Z">
+<meta property="article:author" content="CoderCheng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171252-508620.png">
+  
+    <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://codercheng.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Dubbo习题说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2020-11-11T09:34:57.649Z" itemprop="datePublished">2020-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dubbo习题说明
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>Dubbo编程题      </code></pre><h3 id="项目结构说明"><a href="#项目结构说明" class="headerlink" title="项目结构说明"></a>项目结构说明</h3><ul>
+<li>dubbo-web      测试Consumer</li>
+<li>dubbo-server-monitor   TP90  TP99性能监听Filter</li>
+<li>dubbo_spi_filter   IP透传Filter</li>
+<li>service-api    通用RPC接口</li>
+<li>service-provider           服务端</li>
+<li>service-provider-1       服务端1号</li>
+</ul>
+<p>​                         </p>
+<h3 id="编程题一：将Web请求IP透传到Dubbo服务中"><a href="#编程题一：将Web请求IP透传到Dubbo服务中" class="headerlink" title="编程题一：将Web请求IP透传到Dubbo服务中"></a>编程题一：将Web请求IP透传到Dubbo服务中</h3><p> 先看 实现效果  上图  </p>
+<p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171252-508620.png" alt="image-20201111171252402"></p>
+<p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171316-28018.png" alt="image-20201111171314121"></p>
+<p> <img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171344-943669.png" alt="image-20201111171343847">   实现步骤：</p>
+<p>1、service-api 中定义RPC测试接口 HelloService#sayHello方法</p>
+<p>2、采用不同配置端口实现启动两个Dubbo服务端</p>
+<p>3、dubbo_spi_filter  利用dubbo的spi机制定义Filter，从RPCContext中读取Consumer中传递的IP，两个Dubbo服务端皆依赖该模块 TransportIPFilter</p>
+<p>服务端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker, Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">         String ip = RpcContext.getContext().getAttachment(<span class="string">"IP"</span>);</span><br><span class="line">         <span class="keyword">if</span>(StringUtils.isNoneBlank(ip))&#123;</span><br><span class="line">             log.info(<span class="string">"当前请求IP：&#123;&#125;"</span>,ip);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="comment">// 执行方法</span></span><br><span class="line">         <span class="keyword">return</span>  invoker.invoke(invocation);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>客户端<img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171519-819862.png" alt="image-20201111171512526"></p>
+<h3 id="编程题二：简易版Dubbo方法级性能监控"><a href="#编程题二：简易版Dubbo方法级性能监控" class="headerlink" title="编程题二：简易版Dubbo方法级性能监控"></a>编程题二：简易版Dubbo方法级性能监控</h3><h4 id="测试结果-（5秒钟打印一次记录）"><a href="#测试结果-（5秒钟打印一次记录）" class="headerlink" title="测试结果 （5秒钟打印一次记录）"></a>测试结果 （5秒钟打印一次记录）</h4><p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/172955-469131.png" alt="image-20201111172954789"></p>
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>1、 server-api定义了RPC接口，接口中定义了三个方法</p>
+<ul>
+<li>HelloService#sayHello</li>
+<li>HelloService#sayHello1</li>
+<li>HelloService#sayHello2</li>
+</ul>
+<p>2 、 server-provider 中提供Dubbo服务实现api中定义的HelloService接口</p>
+<p>3 、 dubbo-server-monitor中定义Filter拦截RPC请求并将请求时间（KEY）和请求耗时（VALUE）存储到Map中 核心代码： TPMonitor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TPMonitor</span> <span class="keyword">implements</span>  <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> VALID_TIME = <span class="number">1000</span>*<span class="number">60</span>;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Long, Long&gt; useTimeMaps= <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对外暴露调用接口存储耗时</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">(Long requestTime,Long useTime)</span></span>&#123;</span><br><span class="line">        useTimeMaps.put(requestTime,useTime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清除过期数据</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">clearOld</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">long</span> valid = System.currentTimeMillis()-VALID_TIME;</span><br><span class="line">        Set&lt;Long&gt; requestTimes = useTimeMaps.keySet();</span><br><span class="line">        <span class="keyword">for</span> (Long r:requestTimes)&#123;</span><br><span class="line">            <span class="keyword">if</span>(r&lt;valid)&#123;</span><br><span class="line">                useTimeMaps.remove(r);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">                <span class="comment">// 执行前先清除过期数据</span></span><br><span class="line">                 clearOld();</span><br><span class="line">                <span class="keyword">final</span> Map&lt;Long,Long&gt; temp = Maps.newHashMap(useTimeMaps);</span><br><span class="line">                <span class="keyword">int</span> total = temp.size();</span><br><span class="line">                <span class="keyword">if</span> (total == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> tp90 = (<span class="keyword">int</span>) (total*<span class="number">0.9</span>);</span><br><span class="line">                <span class="keyword">int</span> tp99 = (<span class="keyword">int</span>) (total*<span class="number">0.99</span>);</span><br><span class="line">                <span class="keyword">final</span> Collection&lt;Long&gt; requestTimes = temp.values();</span><br><span class="line"></span><br><span class="line">                Object[] sortedRequestTimes = requestTimes.stream().sorted().toArray();</span><br><span class="line">                log.info(<span class="string">"=====&gt;&gt;&gt;&gt;&gt; tp90:&#123;&#125;ms"</span>,sortedRequestTimes[tp90]);</span><br><span class="line">                log.info(<span class="string">"=====&gt;&gt;&gt;&gt;&gt; tp99:&#123;&#125;ms"</span>,sortedRequestTimes[tp99]);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TPMonitorFilter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span>  <span class="keyword">final</span> TPMonitor tpMonitor = <span class="keyword">new</span> TPMonitor();</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意此构造必须是公有的 不然 拦截器会失效</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">TPMonitorFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line">    executorService.submit(tpMonitor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker, Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">    log.info(<span class="string">"请求过来了----------"</span>);</span><br><span class="line">    <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">    Result result = invoker.invoke(invocation);</span><br><span class="line">    <span class="keyword">long</span> useTime = System.currentTimeMillis() - start;</span><br><span class="line">    tpMonitor.request(System.currentTimeMillis(), useTime);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/" data-id="ckhd7jxoq0000rouo9822cz29" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/26/Zookeeper/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Zookeeper</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/">Dubbo习题说明</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/26/Zookeeper/">Zookeeper</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/19/%E5%9F%BA%E4%BA%8Enetty%20%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89RPC/">基于netty 实现自定义RPC</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/10/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E5%BA%A6/">分布式调度</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/">Tomcat体系结构（图⽂并茂）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 CoderCheng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

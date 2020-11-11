@@ -64,6 +64,74 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Dubbo习题说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2020-11-11T09:34:57.649Z" itemprop="datePublished">2020-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/">Dubbo习题说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>Dubbo编程题      </code></pre><h3 id="项目结构说明"><a href="#项目结构说明" class="headerlink" title="项目结构说明"></a>项目结构说明</h3><ul>
+<li>dubbo-web      测试Consumer</li>
+<li>dubbo-server-monitor   TP90  TP99性能监听Filter</li>
+<li>dubbo_spi_filter   IP透传Filter</li>
+<li>service-api    通用RPC接口</li>
+<li>service-provider           服务端</li>
+<li>service-provider-1       服务端1号</li>
+</ul>
+<p>​                         </p>
+<h3 id="编程题一：将Web请求IP透传到Dubbo服务中"><a href="#编程题一：将Web请求IP透传到Dubbo服务中" class="headerlink" title="编程题一：将Web请求IP透传到Dubbo服务中"></a>编程题一：将Web请求IP透传到Dubbo服务中</h3><p> 先看 实现效果  上图  </p>
+<p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171252-508620.png" alt="image-20201111171252402"></p>
+<p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171316-28018.png" alt="image-20201111171314121"></p>
+<p> <img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171344-943669.png" alt="image-20201111171343847">   实现步骤：</p>
+<p>1、service-api 中定义RPC测试接口 HelloService#sayHello方法</p>
+<p>2、采用不同配置端口实现启动两个Dubbo服务端</p>
+<p>3、dubbo_spi_filter  利用dubbo的spi机制定义Filter，从RPCContext中读取Consumer中传递的IP，两个Dubbo服务端皆依赖该模块 TransportIPFilter</p>
+<p>服务端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker, Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">         String ip = RpcContext.getContext().getAttachment(<span class="string">"IP"</span>);</span><br><span class="line">         <span class="keyword">if</span>(StringUtils.isNoneBlank(ip))&#123;</span><br><span class="line">             log.info(<span class="string">"当前请求IP：&#123;&#125;"</span>,ip);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="comment">// 执行方法</span></span><br><span class="line">         <span class="keyword">return</span>  invoker.invoke(invocation);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>客户端<img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/171519-819862.png" alt="image-20201111171512526"></p>
+<h3 id="编程题二：简易版Dubbo方法级性能监控"><a href="#编程题二：简易版Dubbo方法级性能监控" class="headerlink" title="编程题二：简易版Dubbo方法级性能监控"></a>编程题二：简易版Dubbo方法级性能监控</h3><h4 id="测试结果-（5秒钟打印一次记录）"><a href="#测试结果-（5秒钟打印一次记录）" class="headerlink" title="测试结果 （5秒钟打印一次记录）"></a>测试结果 （5秒钟打印一次记录）</h4><p><img src="https://gitee.com/adc123321/blog_img/raw/master/image/202011/11/172955-469131.png" alt="image-20201111172954789"></p>
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>1、 server-api定义了RPC接口，接口中定义了三个方法</p>
+<ul>
+<li>HelloService#sayHello</li>
+<li>HelloService#sayHello1</li>
+<li>HelloService#sayHello2</li>
+</ul>
+<p>2 、 server-provider 中提供Dubbo服务实现api中定义的HelloService接口</p>
+<p>3 、 dubbo-server-monitor中定义Filter拦截RPC请求并将请求时间（KEY）和请求耗时（VALUE）存储到Map中 核心代码： TPMonitor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TPMonitor</span> <span class="keyword">implements</span>  <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> VALID_TIME = <span class="number">1000</span>*<span class="number">60</span>;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Long, Long&gt; useTimeMaps= <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对外暴露调用接口存储耗时</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">(Long requestTime,Long useTime)</span></span>&#123;</span><br><span class="line">        useTimeMaps.put(requestTime,useTime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清除过期数据</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">clearOld</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">long</span> valid = System.currentTimeMillis()-VALID_TIME;</span><br><span class="line">        Set&lt;Long&gt; requestTimes = useTimeMaps.keySet();</span><br><span class="line">        <span class="keyword">for</span> (Long r:requestTimes)&#123;</span><br><span class="line">            <span class="keyword">if</span>(r&lt;valid)&#123;</span><br><span class="line">                useTimeMaps.remove(r);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">                <span class="comment">// 执行前先清除过期数据</span></span><br><span class="line">                 clearOld();</span><br><span class="line">                <span class="keyword">final</span> Map&lt;Long,Long&gt; temp = Maps.newHashMap(useTimeMaps);</span><br><span class="line">                <span class="keyword">int</span> total = temp.size();</span><br><span class="line">                <span class="keyword">if</span> (total == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> tp90 = (<span class="keyword">int</span>) (total*<span class="number">0.9</span>);</span><br><span class="line">                <span class="keyword">int</span> tp99 = (<span class="keyword">int</span>) (total*<span class="number">0.99</span>);</span><br><span class="line">                <span class="keyword">final</span> Collection&lt;Long&gt; requestTimes = temp.values();</span><br><span class="line"></span><br><span class="line">                Object[] sortedRequestTimes = requestTimes.stream().sorted().toArray();</span><br><span class="line">                log.info(<span class="string">"=====&gt;&gt;&gt;&gt;&gt; tp90:&#123;&#125;ms"</span>,sortedRequestTimes[tp90]);</span><br><span class="line">                log.info(<span class="string">"=====&gt;&gt;&gt;&gt;&gt; tp99:&#123;&#125;ms"</span>,sortedRequestTimes[tp99]);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TPMonitorFilter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span>  <span class="keyword">final</span> TPMonitor tpMonitor = <span class="keyword">new</span> TPMonitor();</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意此构造必须是公有的 不然 拦截器会失效</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">TPMonitorFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line">    executorService.submit(tpMonitor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker, Invocation invocation)</span> <span class="keyword">throws</span> RpcException </span>&#123;</span><br><span class="line">    log.info(<span class="string">"请求过来了----------"</span>);</span><br><span class="line">    <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">    Result result = invoker.invoke(invocation);</span><br><span class="line">    <span class="keyword">long</span> useTime = System.currentTimeMillis() - start;</span><br><span class="line">    tpMonitor.request(System.currentTimeMillis(), useTime);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/" data-id="ckhd7jxoq0000rouo9822cz29" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/26/Zookeeper/" class="article-date">
@@ -538,69 +606,6 @@
 
 
   
-    <article id="post-numpy矩阵入门操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" class="article-date">
-  <time datetime="2020-08-24T11:29:00.468Z" itemprop="datePublished">2020-08-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="numpy矩阵"><a href="#numpy矩阵" class="headerlink" title="numpy矩阵"></a>numpy矩阵</h2><p>矩阵是numpy.matrix类型的对象，该类继承自numpy.ndarray，任何针对多维数组的操作，对矩阵同样有效，但是作为子类矩阵又结合其自身的特点，做了必要的扩充，比如：乘法计算、求逆等。</p>
-<h3 id="1-矩阵对象的创建"><a href="#1-矩阵对象的创建" class="headerlink" title="1. 矩阵对象的创建"></a>1. 矩阵对象的创建</h3><ol>
-<li>通过ndarray创建matrix对象</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.matrix(</span><br><span class="line">    ary,		<span class="comment"># 任何可被解释为矩阵的二维容器</span></span><br><span class="line">  	copy=<span class="literal">True</span>	<span class="comment"># 是否复制数据(缺省值为True，即复制数据)</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><code>numpy.mat()</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等价于：numpy.matrix(..., copy=False)</span></span><br><span class="line"><span class="comment"># 由该函数创建的矩阵对象与参数中的源容器一定共享数据，无法拥有独立的数据拷贝</span></span><br><span class="line">numpy.mat(任何可被解释为矩阵的二维容器)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该函数可以接受字符串形式的矩阵描述：</span></span><br><span class="line"><span class="comment"># 数据项通过空格分隔，数据行通过分号分隔。例如：'1 2 3; 4 5 6'</span></span><br><span class="line">numpy.mat(拼块规则)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p><strong>示例</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建matrix操作</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.arange(<span class="number">1</span>, <span class="number">10</span>).reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">print(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一种方式</span></span><br><span class="line">m = np.matrix(arr, copy=<span class="literal">True</span>)</span><br><span class="line">print(m, m.shape, type(m))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种方式:共享方式</span></span><br><span class="line">m2 = np.mat(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三种方式</span></span><br><span class="line">m3 = np.mat(<span class="string">"1 2 3;4 5 6.0"</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-矩阵的乘法运算"><a href="#2-矩阵的乘法运算" class="headerlink" title="2. 矩阵的乘法运算"></a>2. 矩阵的乘法运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 矩阵乘法</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">                [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"><span class="comment"># 数组相乘, 各对应位置元素相乘</span></span><br><span class="line">print(arr * arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 矩阵相乘，第n行乘m列之和，作为结果的n,m个元素</span></span><br><span class="line"><span class="comment"># 矩阵相乘，第一个矩阵行数必须等于第二个矩阵列数</span></span><br><span class="line">m = np.mat(arr)</span><br><span class="line">print(m * m)</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-矩阵的逆矩阵"><a href="#3-矩阵的逆矩阵" class="headerlink" title="3. 矩阵的逆矩阵"></a>3. 矩阵的逆矩阵</h3><p>若两个矩阵A、B满足：AB = E （E为单位矩阵），则称B为A的逆矩阵。</p>
-<p><strong>单位矩阵</strong></p>
-<ul>
-<li>在矩阵的乘法中，有一种矩阵起着特殊的作用，如同数的乘法中的1，这种矩阵被称为单位矩阵。</li>
-<li>它是个方阵，从左上角到右下角的对角线（称为主对角线）上的元素均为1，除此以外全都为0，记为$I_n$或$E_n$ ，通常用I或E来表示。</li>
-<li>根据单位矩阵的特点，任何矩阵与单位矩阵相乘都等于本身，而且单位矩阵因此独特性有广泛用途。<br>$$<br>E_3 =<br>\left[ \begin{array}{ccc}<br>1 &amp; 0 &amp; 0\<br>0 &amp; 1 &amp; 0\<br>0 &amp; 0 &amp; 1\<br>\end{array}<br>\right ]<br>$$</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://codercheng.cn/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" data-id="cke8fv1cx000440uo0ujhhkyj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -631,7 +636,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
     </div>
   </div>
 
@@ -642,6 +647,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/">Dubbo习题说明</a>
+          </li>
         
           <li>
             <a href="/2020/10/26/Zookeeper/">Zookeeper</a>
@@ -657,10 +666,6 @@
         
           <li>
             <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/">Tomcat体系结构（图⽂并茂）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot学习笔记</a>
           </li>
         
       </ul>

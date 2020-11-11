@@ -64,6 +64,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-numpy矩阵入门操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" class="article-date">
+  <time datetime="2020-08-24T11:29:00.468Z" itemprop="datePublished">2020-08-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/">numpy矩阵入门操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="numpy矩阵"><a href="#numpy矩阵" class="headerlink" title="numpy矩阵"></a>numpy矩阵</h2><p>矩阵是numpy.matrix类型的对象，该类继承自numpy.ndarray，任何针对多维数组的操作，对矩阵同样有效，但是作为子类矩阵又结合其自身的特点，做了必要的扩充，比如：乘法计算、求逆等。</p>
+<h3 id="1-矩阵对象的创建"><a href="#1-矩阵对象的创建" class="headerlink" title="1. 矩阵对象的创建"></a>1. 矩阵对象的创建</h3><ol>
+<li>通过ndarray创建matrix对象</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.matrix(</span><br><span class="line">    ary,		<span class="comment"># 任何可被解释为矩阵的二维容器</span></span><br><span class="line">  	copy=<span class="literal">True</span>	<span class="comment"># 是否复制数据(缺省值为True，即复制数据)</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>numpy.mat()</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等价于：numpy.matrix(..., copy=False)</span></span><br><span class="line"><span class="comment"># 由该函数创建的矩阵对象与参数中的源容器一定共享数据，无法拥有独立的数据拷贝</span></span><br><span class="line">numpy.mat(任何可被解释为矩阵的二维容器)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 该函数可以接受字符串形式的矩阵描述：</span></span><br><span class="line"><span class="comment"># 数据项通过空格分隔，数据行通过分号分隔。例如：'1 2 3; 4 5 6'</span></span><br><span class="line">numpy.mat(拼块规则)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><strong>示例</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建matrix操作</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.arange(<span class="number">1</span>, <span class="number">10</span>).reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">print(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一种方式</span></span><br><span class="line">m = np.matrix(arr, copy=<span class="literal">True</span>)</span><br><span class="line">print(m, m.shape, type(m))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种方式:共享方式</span></span><br><span class="line">m2 = np.mat(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三种方式</span></span><br><span class="line">m3 = np.mat(<span class="string">"1 2 3;4 5 6.0"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-矩阵的乘法运算"><a href="#2-矩阵的乘法运算" class="headerlink" title="2. 矩阵的乘法运算"></a>2. 矩阵的乘法运算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 矩阵乘法</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                [<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">                [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"><span class="comment"># 数组相乘, 各对应位置元素相乘</span></span><br><span class="line">print(arr * arr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 矩阵相乘，第n行乘m列之和，作为结果的n,m个元素</span></span><br><span class="line"><span class="comment"># 矩阵相乘，第一个矩阵行数必须等于第二个矩阵列数</span></span><br><span class="line">m = np.mat(arr)</span><br><span class="line">print(m * m)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-矩阵的逆矩阵"><a href="#3-矩阵的逆矩阵" class="headerlink" title="3. 矩阵的逆矩阵"></a>3. 矩阵的逆矩阵</h3><p>若两个矩阵A、B满足：AB = E （E为单位矩阵），则称B为A的逆矩阵。</p>
+<p><strong>单位矩阵</strong></p>
+<ul>
+<li>在矩阵的乘法中，有一种矩阵起着特殊的作用，如同数的乘法中的1，这种矩阵被称为单位矩阵。</li>
+<li>它是个方阵，从左上角到右下角的对角线（称为主对角线）上的元素均为1，除此以外全都为0，记为$I_n$或$E_n$ ，通常用I或E来表示。</li>
+<li>根据单位矩阵的特点，任何矩阵与单位矩阵相乘都等于本身，而且单位矩阵因此独特性有广泛用途。<br>$$<br>E_3 =<br>\left[ \begin{array}{ccc}<br>1 &amp; 0 &amp; 0\<br>0 &amp; 1 &amp; 0\<br>0 &amp; 0 &amp; 1\<br>\end{array}<br>\right ]<br>$$</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://codercheng.cn/2020/08/24/numpy%E7%9F%A9%E9%98%B5%E5%85%A5%E9%97%A8%E6%93%8D%E4%BD%9C/" data-id="cke8fv1cx000440uo0ujhhkyj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/24/hello-world/" class="article-date">
@@ -411,7 +474,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li></ul>
     </div>
   </div>
 
@@ -422,6 +485,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/11/11/Dubbo%E4%B9%A0%E9%A2%98%E8%AF%B4%E6%98%8E/">Dubbo习题说明</a>
+          </li>
         
           <li>
             <a href="/2020/10/26/Zookeeper/">Zookeeper</a>
@@ -437,10 +504,6 @@
         
           <li>
             <a href="/2020/09/28/Tomcat%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E2%BD%82%E5%B9%B6%E8%8C%82%EF%BC%89/">Tomcat体系结构（图⽂并茂）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/24/SpringBoot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringBoot学习笔记</a>
           </li>
         
       </ul>
