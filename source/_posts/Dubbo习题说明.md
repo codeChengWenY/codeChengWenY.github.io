@@ -11,8 +11,6 @@
 - service-provider           服务端
 - service-provider-1       服务端1号
 
-​                         
-
 ###         编程题一：将Web请求IP透传到Dubbo服务中
 
  先看 实现效果  上图  
