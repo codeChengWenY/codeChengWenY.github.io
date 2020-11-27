@@ -100,5 +100,5 @@ theme: landscape
 deploy:
   type: 'git'
   repo:
-    github: git@github.com:codeChengWenY/codeChengWenY.github.io.git
+    github: git@gitee.com:adc123321/codeChengWenY.github.io.git
   branch: master
