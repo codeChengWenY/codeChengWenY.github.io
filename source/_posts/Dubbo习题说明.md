@@ -1,7 +1,4 @@
                                                 Dubbo编程题      
-
-
-
 ###  项目结构说明
 
 - dubbo-web      测试Consumer
@@ -10,6 +7,7 @@
 - service-api    通用RPC接口
 - service-provider           服务端
 - service-provider-1       服务端1号
+
 
 ###         编程题一：将Web请求IP透传到Dubbo服务中
 
